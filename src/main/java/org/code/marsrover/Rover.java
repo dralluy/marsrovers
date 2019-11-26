@@ -1,8 +1,6 @@
 package org.code.marsrover;
 
 public class Rover {
-    private Coordinate coordinate;
-    private String heading;
     private Position position;
 
     public Rover(Position position) {

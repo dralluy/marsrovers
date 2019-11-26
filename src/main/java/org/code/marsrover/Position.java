@@ -4,17 +4,17 @@ import java.util.Objects;
 
 public class Position {
     private Coordinate coordinate;
-    private String headingNorth;
+    private String heading;
 
     public Position(Coordinate coordinate, String headingNorth) {
 
         this.coordinate = coordinate;
-        this.headingNorth = headingNorth;
+        this.heading = headingNorth;
     }
 
     @Override
     public String toString() {
-        return coordinate.toString() + " " + headingNorth;
+        return coordinate.toString() + " " + heading;
     }
 
     @Override
@@ -23,11 +23,11 @@ public class Position {
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
         return Objects.equals(coordinate, position.coordinate) &&
-                Objects.equals(headingNorth, position.headingNorth);
+                Objects.equals(heading, position.heading);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coordinate, headingNorth);
+        return Objects.hash(coordinate, heading);
     }
 }
