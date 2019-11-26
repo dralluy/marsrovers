@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+
 @RunWith(JUnit4.class)
 public class PlateauShould {
     @Test
@@ -15,7 +18,7 @@ public class PlateauShould {
 
         Plateau plateau = new Plateau(upperRightCoordinates);
 
-        Assert.assertThat(plateau.getBottomLeftCoordinates(), CoreMatchers.is(expectedBottomLeftCoordinates));
+        assertThat(plateau.getBottomLeftCoordinates(), is(expectedBottomLeftCoordinates));
     }
 
     @Test
@@ -25,6 +28,6 @@ public class PlateauShould {
 
         Plateau plateau = new Plateau(upperRightCoordinates);
 
-        Assert.assertThat(plateau.getUpperRightCoordinates(), CoreMatchers.is(expectedUpperRightCoordinates));
+        assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
     }
 }
