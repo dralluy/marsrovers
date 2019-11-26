@@ -3,17 +3,13 @@ package org.code.marsrover;
 public class Rover {
     private Coordinate coordinate;
     private String heading;
+    private Position position;
 
-    public Rover(Coordinate coordinate, String heading) {
-        this.coordinate = coordinate;
-        this.heading = heading;
+    public Rover(Position position) {
+        this.position = position;
     }
 
-    public String getPosition() {
-        return coordinate.getX() +
-                " " +
-                coordinate.getY() +
-                " " +
-                heading;
+    public Position getPosition() {
+        return this.position;
     }
 }

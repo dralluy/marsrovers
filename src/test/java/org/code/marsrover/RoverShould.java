@@ -15,9 +15,11 @@ public class RoverShould {
     @Test
     public void have_a_position_represented_by_a_coordinate_and_a_heading() {
         Coordinate coordinate = new Coordinate(1, 3);
+        Position position = new Position(coordinate, HEADING_NORTH);
 
-        Rover rover = new Rover(coordinate, HEADING_NORTH);
+        Position expectedPosition = new Position(new Coordinate(1,3), HEADING_NORTH);
+        Rover rover = new Rover(position);
 
-        Assert.assertThat(rover.getPosition(), is("1 3 N"));
+        Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
 }
