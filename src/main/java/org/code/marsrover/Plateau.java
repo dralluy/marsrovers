@@ -1,16 +1,17 @@
 package org.code.marsrover;
 
 public class Plateau {
-    private int x;
-    private int y;
+
+    private Coordinate bottomLeftCoordinate = new Coordinate(0, 0);
     private Coordinate upperLeftCoordinate;
+
 
     public Plateau(int x, int y) {
         upperLeftCoordinate = new Coordinate(x, y);
     }
 
-    public String getBottomLeftCoordinates() {
-        return "0 0";
+    public Coordinate getBottomLeftCoordinates() {
+        return bottomLeftCoordinate;
     }
 
     public int getXUpperRightCoordinate() {

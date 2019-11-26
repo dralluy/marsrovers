@@ -12,7 +12,8 @@ public class PlateauShould {
     public void initialize_plateau_bottom_left_coordinates_to_zero_when_created() {
         Plateau plateau = new Plateau(0,0);
 
-        Assert.assertThat(plateau.getBottomLeftCoordinates(), CoreMatchers.is("0 0"));
+        Assert.assertThat(plateau.getBottomLeftCoordinates().getX(), CoreMatchers.is(0));
+        Assert.assertThat(plateau.getBottomLeftCoordinates().getY(), CoreMatchers.is(0));
     }
 
     @Test
