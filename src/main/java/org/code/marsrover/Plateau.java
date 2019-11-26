@@ -3,10 +3,10 @@ package org.code.marsrover;
 public class Plateau {
     private int x;
     private int y;
+    private Coordinate upperLeftCoordinate;
 
     public Plateau(int x, int y) {
-        this.x = x;
-        this.y = y;
+        upperLeftCoordinate = new Coordinate(x, y);
     }
 
     public String getBottomLeftCoordinates() {
@@ -14,10 +14,10 @@ public class Plateau {
     }
 
     public int getXUpperRightCoordinate() {
-        return x;
+        return upperLeftCoordinate.getX();
     }
 
     public int getYUpperRightCoordinate() {
-        return y;
+        return upperLeftCoordinate.getY();
     }
 }
