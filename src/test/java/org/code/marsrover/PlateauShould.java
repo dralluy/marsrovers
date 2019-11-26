@@ -10,19 +10,21 @@ import org.junit.runners.JUnit4;
 public class PlateauShould {
     @Test
     public void initialize_plateau_bottom_left_coordinates_to_zero_when_created() {
-        Plateau plateau = new Plateau(1,1);
+        Coordinate upperRightCoordinates = new Coordinate(1, 1);
+        Coordinate expectedBottomLeftCoordinates = new Coordinate(0,0);
 
-        Assert.assertThat(plateau.getBottomLeftCoordinates().getX(), CoreMatchers.is(0));
-        Assert.assertThat(plateau.getBottomLeftCoordinates().getY(), CoreMatchers.is(0));
+        Plateau plateau = new Plateau(upperRightCoordinates);
+
+        Assert.assertThat(plateau.getBottomLeftCoordinates(), CoreMatchers.is(expectedBottomLeftCoordinates));
     }
 
     @Test
     public void initialize_plateau_upper_right_coordinates_to_sent_values_when_created() {
-        int x = 1;
-        int y = 1;
-        Plateau plateau = new Plateau(x, y);
+        Coordinate upperRightCoordinates = new Coordinate(1, 1);
+        Coordinate expectedUpperRightCoordinates = new Coordinate(1,1);
 
-        Assert.assertThat(plateau.getUpperRightCoordinates().getX(), CoreMatchers.is(1));
-        Assert.assertThat(plateau.getUpperRightCoordinates().getY(), CoreMatchers.is(1));
+        Plateau plateau = new Plateau(upperRightCoordinates);
+
+        Assert.assertThat(plateau.getUpperRightCoordinates(), CoreMatchers.is(expectedUpperRightCoordinates));
     }
 }
