@@ -30,4 +30,8 @@ public class Position {
     public int hashCode() {
         return Objects.hash(coordinate, heading);
     }
+
+    public Position incrementYPosition() {
+        return new Position(new Coordinate(this.coordinate.getX(), this.coordinate.getY()+1), heading);
+    }
 }

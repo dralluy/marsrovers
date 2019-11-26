@@ -24,7 +24,7 @@ public class RoverShould {
     }
 
     @Test
-    public void increment_y_coordinate_and_maintain_heading_when_moving_north() {
+    public void increment_y_coordinate_when_moving_north() {
         Coordinate coordinate = new Coordinate(1, 3);
         Position position = new Position(coordinate, HEADING_NORTH);
 
