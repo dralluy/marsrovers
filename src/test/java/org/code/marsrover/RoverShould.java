@@ -11,6 +11,7 @@ import static org.hamcrest.core.Is.is;
 public class RoverShould {
 
     private static final String HEADING_NORTH = "N";
+    private static final String HEADING_SOUTH = "S";
 
     @Test
     public void have_a_position_represented_by_a_coordinate_and_a_heading() {
@@ -32,6 +33,19 @@ public class RoverShould {
 
         Rover rover = new Rover(position);
         rover.move(HEADING_NORTH);
+
+        Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
+    }
+
+    @Test
+    public void decrement_y_coordinate_when_moving_south() {
+        Coordinate coordinate = new Coordinate(1, 3);
+        Position position = new Position(coordinate, HEADING_SOUTH);
+
+        Position expectedPosition = new Position(new Coordinate(1,2), HEADING_SOUTH);
+
+        Rover rover = new Rover(position);
+        rover.move(HEADING_SOUTH);
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
