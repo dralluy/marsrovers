@@ -22,7 +22,7 @@ public class PlateauShould {
     }
 
     @Test
-    public void initialize_plateau_upper_right_coordinates_to_sent_values_when_created() {
+    public void initialize_plateau_upper_right_coordinates_to_passed_values_when_created() {
         Coordinate upperRightCoordinates = new Coordinate(1, 1);
         Coordinate expectedUpperRightCoordinates = new Coordinate(1,1);
 
