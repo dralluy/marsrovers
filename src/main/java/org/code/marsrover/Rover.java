@@ -10,6 +10,10 @@ public class Rover {
     }
 
     public String getPosition() {
-        return null;
+        return coordinate.getX() +
+                " " +
+                coordinate.getY() +
+                " " +
+                heading;
     }
 }
