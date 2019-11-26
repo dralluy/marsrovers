@@ -32,6 +32,10 @@ public class Position {
     }
 
     public Position incrementYPosition() {
-        return new Position(new Coordinate(this.coordinate.getX(), this.coordinate.getY()+1), heading);
+        return new Position(new Coordinate(this.coordinate.getX(), this.coordinate.getY() +1 ), heading);
+    }
+
+    public Position decrementYPosition() {
+        return new Position(new Coordinate(this.coordinate.getX(), this.coordinate.getY() - 1), heading);
     }
 }

@@ -14,6 +14,8 @@ public class Rover {
     public void move(String heading) {
         if ("N".equals(heading)) {
             this.position = position.incrementYPosition();
+        } else if ("S".equals(heading)) {
+            this.position = position.decrementYPosition();
         }
     }
 }
