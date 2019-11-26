@@ -10,4 +10,8 @@ public class Rover {
     public Position getPosition() {
         return this.position;
     }
+
+    public void move(String heading) {
+
+    }
 }

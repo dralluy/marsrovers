@@ -22,4 +22,17 @@ public class RoverShould {
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
+
+    @Test
+    public void increment_y_coordinate_and_maintain_heading_when_moving_north() {
+        Coordinate coordinate = new Coordinate(1, 3);
+        Position position = new Position(coordinate, HEADING_NORTH);
+
+        Position expectedPosition = new Position(new Coordinate(1,4), HEADING_NORTH);
+
+        Rover rover = new Rover(position);
+        rover.move(HEADING_NORTH);
+
+        Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
+    }
 }
