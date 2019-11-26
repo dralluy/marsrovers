@@ -10,7 +10,7 @@ import org.junit.runners.JUnit4;
 public class PlateauShould {
     @Test
     public void initialize_plateau_bottom_left_coordinates_to_zero_when_created() {
-        Plateau plateau = new Plateau(0,0);
+        Plateau plateau = new Plateau(1,1);
 
         Assert.assertThat(plateau.getBottomLeftCoordinates().getX(), CoreMatchers.is(0));
         Assert.assertThat(plateau.getBottomLeftCoordinates().getY(), CoreMatchers.is(0));
@@ -22,7 +22,7 @@ public class PlateauShould {
         int y = 1;
         Plateau plateau = new Plateau(x, y);
 
-        Assert.assertThat(plateau.getXUpperRightCoordinate(), CoreMatchers.is(1));
-        Assert.assertThat(plateau.getYUpperRightCoordinate(), CoreMatchers.is(1));
+        Assert.assertThat(plateau.getUpperRightCoordinates().getX(), CoreMatchers.is(1));
+        Assert.assertThat(plateau.getUpperRightCoordinates().getY(), CoreMatchers.is(1));
     }
 }
