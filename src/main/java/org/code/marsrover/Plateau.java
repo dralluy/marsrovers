@@ -1,8 +1,12 @@
 package org.code.marsrover;
 
 public class Plateau {
-    public Plateau(int x, int y) {
+    private int x;
+    private int y;
 
+    public Plateau(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public String getBottomLeftCoordinates() {
@@ -10,10 +14,10 @@ public class Plateau {
     }
 
     public int getXUpperRightCoordinate() {
-        return 0;
+        return x;
     }
 
     public int getYUpperRightCoordinate() {
-        return 0;
+        return y;
     }
 }
