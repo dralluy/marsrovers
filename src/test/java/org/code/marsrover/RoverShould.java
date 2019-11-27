@@ -91,7 +91,8 @@ public class RoverShould {
 
     private Object[] parametersForHeadingTest() {
         return new Object[] {
-                new Object[] { WEST, SOUTH }
+                new Object[] { WEST, SOUTH },
+                new Object[] { NORTH, WEST}
         };
     }
 }
