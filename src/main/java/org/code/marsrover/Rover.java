@@ -18,6 +18,8 @@ public class Rover {
             this.position = position.incrementYPosition();
         } else if (SOUTH.equals(heading)) {
             this.position = position.decrementYPosition();
+        } else if (EAST.equals(heading)) {
+            this.position = position.incrementXPosition();
         }
     }
 }
