@@ -79,7 +79,7 @@ public class RoverShould {
 
     @Test
     @Parameters(method = "parametersForHeadingTest")
-    public void change_to_coorect_heading_left_command_received(Heading initial, Heading expected) {
+    public void change_to_correct_heading_when_turn_left_command_received(Heading initial, Heading expected) {
         Coordinate coordinate = new Coordinate(1, 3);
         Position position = new Position(coordinate, initial);
 
@@ -92,7 +92,8 @@ public class RoverShould {
     private Object[] parametersForHeadingTest() {
         return new Object[] {
                 new Object[] { WEST, SOUTH },
-                new Object[] { NORTH, WEST}
+                new Object[] { NORTH, WEST},
+                new Object[] { EAST, NORTH}
         };
     }
 }
