@@ -11,4 +11,8 @@ public class NasaCommandGenerator {
         String[] coordinateSnippet = this.plateauUpperLeftCoordinates.split("\\s");
         return new Coordinate(Integer.valueOf(coordinateSnippet[0]), Integer.valueOf(coordinateSnippet[1]));
     }
+
+    public Plateau getPlateau() {
+        return null;
+    }
 }
