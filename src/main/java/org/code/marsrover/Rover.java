@@ -32,6 +32,8 @@ public class Rover {
             this.position.changeHeadingTo(WEST);
         } else if (this.position.getHeading().equals(EAST)) {
             this.position.changeHeadingTo(NORTH);
+        } else if (this.position.getHeading().equals(SOUTH)) {
+            this.position.changeHeadingTo(EAST);
         }
     }
 }
