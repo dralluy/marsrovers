@@ -28,6 +28,8 @@ public class Rover {
     public void turnLeft() {
         if (this.position.getHeading().equals(WEST)) {
             this.position.changeHeadingTo(SOUTH);
+        } else if (this.position.getHeading().equals(NORTH)) {
+            this.position.changeHeadingTo(WEST);
         }
     }
 }
