@@ -22,4 +22,14 @@ public class NasaCommandGeneratorShould {
         assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
         assertThat(plateau.getBottomLeftCoordinates(), is(expectedBottomLeftCoordinates));
     }
+
+    @Test
+    public void not_create_plateau_when_nasa_command_is_empty() {
+        String nasaCommand = "";
+
+        NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
+        Plateau plateau = nasaCommandGenerator.getPlateau();
+
+        assertNull(plateau);
+    }
 }
