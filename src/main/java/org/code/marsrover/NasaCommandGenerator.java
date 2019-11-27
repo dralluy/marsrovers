@@ -1,9 +1,9 @@
 package org.code.marsrover;
 
-public class NasaCommandProccesor {
+public class NasaCommandGenerator {
     private final String plateauUpperLeftCoordinates;
 
-    public NasaCommandProccesor(String nasaCommand) {
+    public NasaCommandGenerator(String nasaCommand) {
         this.plateauUpperLeftCoordinates = nasaCommand;
     }
 

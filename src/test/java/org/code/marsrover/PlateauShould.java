@@ -1,7 +1,5 @@
 package org.code.marsrover;
 
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -34,7 +32,7 @@ public class PlateauShould {
     @Test
     public void initialize_plateau_coordinates_using_nasa_command_values_when_created() {
         String nasaCommand = "4 4";
-        Coordinate upperRightCoordinate = new NasaCommandProccesor(nasaCommand).generatePlateauCoordinates();
+        Coordinate upperRightCoordinate = new NasaCommandGenerator(nasaCommand).generatePlateauCoordinates();
         Coordinate expectedUpperRightCoordinates = new Coordinate(4,4);
 
         Plateau plateau = new Plateau(upperRightCoordinate);
