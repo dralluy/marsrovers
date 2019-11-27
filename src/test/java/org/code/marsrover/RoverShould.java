@@ -63,4 +63,17 @@ public class RoverShould {
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
+
+    @Test
+    public void decrement_x_coordinate_when_moving_west() {
+        Coordinate coordinate = new Coordinate(1, 3);
+        Position position = new Position(coordinate, WEST);
+
+        Position expectedPosition = new Position(new Coordinate(0,3), WEST);
+
+        Rover rover = new Rover(position);
+        rover.move(WEST);
+
+        Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
+    }
 }
