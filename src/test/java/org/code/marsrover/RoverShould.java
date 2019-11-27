@@ -93,7 +93,8 @@ public class RoverShould {
         return new Object[] {
                 new Object[] { WEST, SOUTH },
                 new Object[] { NORTH, WEST},
-                new Object[] { EAST, NORTH}
+                new Object[] { EAST, NORTH},
+                new Object[] { SOUTH, EAST}
         };
     }
 }
