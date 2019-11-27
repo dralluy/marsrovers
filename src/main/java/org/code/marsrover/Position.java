@@ -42,4 +42,8 @@ public class Position {
     public Position incrementXPosition() {
         return new Position(new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY()), heading);
     }
+
+    public Position decrementXPosition() {
+        return new Position(new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY()), heading);
+    }
 }
