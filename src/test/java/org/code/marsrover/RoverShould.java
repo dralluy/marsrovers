@@ -50,4 +50,17 @@ public class RoverShould {
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
+
+    @Test
+    public void increment_x_coordinate_when_moving_east() {
+        Coordinate coordinate = new Coordinate(1, 3);
+        Position position = new Position(coordinate, EAST);
+
+        Position expectedPosition = new Position(new Coordinate(2,3), EAST);
+
+        Rover rover = new Rover(position);
+        rover.move(EAST);
+
+        Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
+    }
 }
