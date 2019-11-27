@@ -1,18 +1,18 @@
 package org.code.marsrover;
 
 public class NasaCommandGenerator {
-    private final String plateauUpperLeftCoordinates;
+    private final String nasaCommand;
 
     public NasaCommandGenerator(String nasaCommand) {
-        this.plateauUpperLeftCoordinates = nasaCommand;
+        this.nasaCommand = nasaCommand;
     }
 
-    public Coordinate generatePlateauCoordinates() {
-        String[] coordinateSnippet = this.plateauUpperLeftCoordinates.split("\\s");
+    public Coordinate extractPlateauCoordinatesFromCommand() {
+        String[] coordinateSnippet = this.nasaCommand.split("\\s");
         return new Coordinate(Integer.valueOf(coordinateSnippet[0]), Integer.valueOf(coordinateSnippet[1]));
     }
 
     public Plateau getPlateau() {
-        return null;
+        return new Plateau(extractPlateauCoordinatesFromCommand());
     }
 }
