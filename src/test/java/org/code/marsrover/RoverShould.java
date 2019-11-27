@@ -11,9 +11,6 @@ import static org.hamcrest.core.Is.is;
 @RunWith(JUnit4.class)
 public class RoverShould {
 
-    private static final String HEADING_NORTH = "N";
-    private static final String HEADING_SOUTH = "S";
-
     @Test
     public void have_a_position_represented_by_a_coordinate_and_a_heading() {
         Coordinate coordinate = new Coordinate(1, 3);
@@ -75,5 +72,16 @@ public class RoverShould {
         rover.move(WEST);
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
+    }
+
+    @Test
+    public void change_heading_to_south_when_left_command_received_and_heading_west() {
+        Coordinate coordinate = new Coordinate(1, 3);
+        Position position = new Position(coordinate, WEST);
+
+        Rover rover = new Rover(position);
+        rover.turnLeft("L");
+
+        Assert.assertThat(rover.getPosition().getHeading(), is(SOUTH));
     }
 }
