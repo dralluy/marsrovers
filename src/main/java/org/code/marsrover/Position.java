@@ -50,4 +50,8 @@ public class Position {
     public Heading getHeading() {
         return heading;
     }
+
+    public void changeHeadingTo(Heading heading) {
+        this.heading = heading;
+    }
 }

@@ -25,7 +25,9 @@ public class Rover {
         }
     }
 
-    public void turnLeft(String command) {
-
+    public void turnLeft() {
+        if (this.position.getHeading().equals(WEST)) {
+            this.position.changeHeadingTo(SOUTH);
+        }
     }
 }

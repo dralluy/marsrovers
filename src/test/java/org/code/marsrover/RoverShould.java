@@ -80,7 +80,7 @@ public class RoverShould {
         Position position = new Position(coordinate, WEST);
 
         Rover rover = new Rover(position);
-        rover.turnLeft("L");
+        rover.turnLeft();
 
         Assert.assertThat(rover.getPosition().getHeading(), is(SOUTH));
     }
