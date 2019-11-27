@@ -28,15 +28,4 @@ public class PlateauShould {
 
         assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
     }
-
-    @Test
-    public void initialize_plateau_coordinates_using_nasa_command_values_when_created() {
-        String nasaCommand = "4 4";
-        Coordinate upperRightCoordinate = new NasaCommandGenerator(nasaCommand).extractPlateauCoordinatesFromCommand().get();
-        Coordinate expectedUpperRightCoordinates = new Coordinate(4,4);
-
-        Plateau plateau = new Plateau(upperRightCoordinate);
-
-        assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
-    }
 }

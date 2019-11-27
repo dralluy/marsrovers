@@ -11,7 +11,12 @@ public class NasaCommandGenerator {
         this.nasaCommand = nasaCommand;
     }
 
-    public Optional<Coordinate> extractPlateauCoordinatesFromCommand() {
+    public Plateau getPlateau() {
+        Optional<Coordinate> coordinate = extractPlateauCoordinatesFromCommand();
+        return coordinate.isPresent()? new Plateau(coordinate.get()) : null;
+    }
+
+    private Optional<Coordinate> extractPlateauCoordinatesFromCommand() {
         Pattern pattern = Pattern.compile("^(\\d\\s\\d)");
         Matcher matcher = pattern.matcher(this.nasaCommand);
 
@@ -20,10 +25,5 @@ public class NasaCommandGenerator {
             return Optional.of(new Coordinate(Integer.valueOf(coordinateSnippet[0]), Integer.valueOf(coordinateSnippet[1])));
         }
         return Optional.empty();
-    }
-
-    public Plateau getPlateau() {
-        Optional<Coordinate> coordinate = extractPlateauCoordinatesFromCommand();
-        return coordinate.isPresent()? new Plateau(coordinate.get()) : null;
     }
 }
