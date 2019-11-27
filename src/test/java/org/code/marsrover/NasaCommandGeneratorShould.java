@@ -32,4 +32,17 @@ public class NasaCommandGeneratorShould {
 
         assertNull(plateau);
     }
+
+    @Test
+    public void create_rover_with_selected_position_and_heading_when_nasa_command_contains_rover_data() {
+        String nasaCommand = "4 4 1 2 N";
+        Position expectedRoverPosition = new Position(new Coordinate(1, 2), Heading.NORTH);
+        Coordinate expectedBottomLeftCoordinates = new Coordinate(0,0);
+
+        NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
+        Rover rover = nasaCommandGenerator.getRover();
+
+        assertNotNull(rover);
+        assertThat(rover.getPosition(), is(expectedRoverPosition));
+    }
 }

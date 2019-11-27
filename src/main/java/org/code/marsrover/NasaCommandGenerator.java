@@ -26,4 +26,8 @@ public class NasaCommandGenerator {
         }
         return Optional.empty();
     }
+
+    public Rover getRover() {
+        return null;
+    }
 }
