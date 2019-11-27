@@ -36,4 +36,8 @@ public class Rover {
             this.position.changeHeadingTo(EAST);
         }
     }
+
+    public void turnRight() {
+
+    }
 }

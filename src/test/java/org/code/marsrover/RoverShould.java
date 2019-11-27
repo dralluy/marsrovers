@@ -78,7 +78,7 @@ public class RoverShould {
     }
 
     @Test
-    @Parameters(method = "parametersForHeadingTest")
+    @Parameters(method = "parametersForHeadingFromTurnLeftTest")
     public void change_to_correct_heading_when_turn_left_command_received(Heading initial, Heading expected) {
         Coordinate coordinate = new Coordinate(1, 3);
         Position position = new Position(coordinate, initial);
@@ -89,12 +89,33 @@ public class RoverShould {
         Assert.assertThat(rover.getPosition().getHeading(), is(expected));
     }
 
-    private Object[] parametersForHeadingTest() {
+    private Object[] parametersForHeadingFromTurnLeftTest() {
         return new Object[] {
                 new Object[] { WEST, SOUTH },
                 new Object[] { NORTH, WEST},
                 new Object[] { EAST, NORTH},
                 new Object[] { SOUTH, EAST}
+        };
+    }
+
+    @Test
+    @Parameters(method = "parametersForHeadingFromTurnRightTest")
+    public void change_to_correct_heading_when_turn_right_command_received(Heading initial, Heading expected) {
+        Coordinate coordinate = new Coordinate(1, 3);
+        Position position = new Position(coordinate, initial);
+
+        Rover rover = new Rover(position);
+        rover.turnRight();
+
+        Assert.assertThat(rover.getPosition().getHeading(), is(expected));
+    }
+
+    private Object[] parametersForHeadingFromTurnRightTest() {
+        return new Object[] {
+                new Object[] { WEST, NORTH },
+                new Object[] { NORTH, EAST},
+                new Object[] { EAST, SOUTH},
+                new Object[] { SOUTH, WEST}
         };
     }
 }
