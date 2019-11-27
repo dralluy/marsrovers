@@ -4,17 +4,17 @@ import java.util.Objects;
 
 public class Position {
     private Coordinate coordinate;
-    private String heading;
+    private Heading heading;
 
-    public Position(Coordinate coordinate, String headingNorth) {
+    public Position(Coordinate coordinate, Heading heading) {
 
         this.coordinate = coordinate;
-        this.heading = headingNorth;
+        this.heading = heading;
     }
 
     @Override
     public String toString() {
-        return coordinate.toString() + " " + heading;
+        return coordinate.toString() + " " + heading.getCardinalDirection();
     }
 
     @Override
