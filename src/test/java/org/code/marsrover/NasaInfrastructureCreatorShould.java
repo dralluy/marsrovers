@@ -85,14 +85,13 @@ public class NasaInfrastructureCreatorShould {
     }
 
     @Test
-    public void create_rover_do_nothing_commands_when_nasa_command_contains_commands_different_from_RLM() {
-        String nasaCommand = "4 4 1 2 N X";
+    public void ignore_commands_when_nasa_command_contains_commands_different_from_RLM() {
+        String nasaCommand = "4 4 1 2 N XLM";
 
         NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
-        assertThat(roverCommands.size(), is(1));
-        assertTrue(roverCommands.stream().filter(c -> c instanceof RoverDoNothingCommand).findAny().isPresent());
+        assertThat(roverCommands.size(), is(0));
     }
 }
