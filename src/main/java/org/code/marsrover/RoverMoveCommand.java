@@ -9,6 +9,6 @@ public class RoverMoveCommand implements RoverCommand{
 
     @Override
     public void execute() {
-        this.rover.move(null);
+        this.rover.move();
     }
 }

@@ -13,14 +13,14 @@ public class Rover {
         return this.position;
     }
 
-    public void move(Heading heading) {
-        if (NORTH.equals(heading)) {
+    public void move() {
+        if (NORTH.equals(this.position.getHeading())) {
             this.position = position.incrementYPosition();
-        } else if (SOUTH.equals(heading)) {
+        } else if (SOUTH.equals(this.position.getHeading())) {
             this.position = position.decrementYPosition();
-        } else if (EAST.equals(heading)) {
+        } else if (EAST.equals(this.position.getHeading())) {
             this.position = position.incrementXPosition();
-        } else if (WEST.equals(heading)) {
+        } else if (WEST.equals(this.position.getHeading())) {
             this.position = position.decrementXPosition();
         }
     }

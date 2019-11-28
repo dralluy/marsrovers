@@ -5,8 +5,6 @@ import junitparams.Parameters;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import org.junit.runners.Parameterized;
 
 import static org.code.marsrover.Heading.*;
 import static org.hamcrest.core.Is.is;
@@ -33,7 +31,7 @@ public class RoverShould {
         Position expectedPosition = new Position(new Coordinate(1,4), NORTH);
 
         Rover rover = new Rover(position);
-        rover.move(NORTH);
+        rover.move();
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
@@ -46,7 +44,7 @@ public class RoverShould {
         Position expectedPosition = new Position(new Coordinate(1,2), SOUTH);
 
         Rover rover = new Rover(position);
-        rover.move(SOUTH);
+        rover.move();
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
@@ -59,7 +57,7 @@ public class RoverShould {
         Position expectedPosition = new Position(new Coordinate(2,3), EAST);
 
         Rover rover = new Rover(position);
-        rover.move(EAST);
+        rover.move();
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
@@ -72,7 +70,7 @@ public class RoverShould {
         Position expectedPosition = new Position(new Coordinate(0,3), WEST);
 
         Rover rover = new Rover(position);
-        rover.move(WEST);
+        rover.move();
 
         Assert.assertThat(rover.getPosition().toString(), is(expectedPosition.toString()));
     }
