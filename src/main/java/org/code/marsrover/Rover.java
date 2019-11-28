@@ -12,7 +12,7 @@ public class Rover {
     }
 
     public void move() {
-        this.position = this.position.getHeading().moveFromPosition(this.position);
+        this.position = new PositionMovement().applyMovementTo(this.position);
     }
 
     public void turnLeft() {
