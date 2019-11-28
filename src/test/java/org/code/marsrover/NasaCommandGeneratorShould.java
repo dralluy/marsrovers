@@ -12,7 +12,7 @@ public class NasaCommandGeneratorShould {
 
     @Test
     public void create_plateau_with_selected_size_when_nasa_command_contains_plateau_coordinates() {
-        String nasaCommand = "4 4";
+        String nasaCommand = "4 4 1 2 N";
         Coordinate expectedUpperRightCoordinates = new Coordinate(4,4);
         Coordinate expectedBottomLeftCoordinates = new Coordinate(0,0);
 
