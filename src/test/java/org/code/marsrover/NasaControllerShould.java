@@ -19,9 +19,12 @@ public class NasaControllerShould {
 
         NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
 
+        NasaController nasaController = new NasaController(nasaInfrastructureCreator.getCommands());
+        nasaController.executeCommands();
+
         String endRoversPosition = nasaInfrastructureCreator.getRovers().stream()
                 .map(rover -> rover.getPosition().toString())
-                .collect(Collectors.joining());
+                .collect(Collectors.joining(" "));
         assertThat(endRoversPosition, is(expectedEndRoversPosition));
     }
 }
