@@ -1,11 +1,11 @@
-package org.code.marsrover;
+package org.code.marsrover.domain;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import static org.code.marsrover.Heading.*;
+import static org.code.marsrover.domain.Heading.*;
 
 public class PositionMovement {
     private static final Map<Heading, Function<Position, Position>> positionMovements;

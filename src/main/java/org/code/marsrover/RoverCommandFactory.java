@@ -1,5 +1,7 @@
 package org.code.marsrover;
 
+import org.code.marsrover.domain.Rover;
+
 public class RoverCommandFactory {
     public static RoverCommand createCommand(Rover rover, String command) {
         switch (command) {

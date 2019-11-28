@@ -2,10 +2,11 @@ package org.code.marsrover;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.code.marsrover.domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.code.marsrover.Heading.*;
+import static org.code.marsrover.domain.Heading.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 

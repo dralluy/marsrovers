@@ -1,4 +1,4 @@
-package org.code.marsrover;
+package org.code.marsrover.domain;
 
 import java.util.Arrays;
 

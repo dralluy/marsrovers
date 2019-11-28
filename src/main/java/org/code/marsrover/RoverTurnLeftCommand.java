@@ -1,5 +1,7 @@
 package org.code.marsrover;
 
+import org.code.marsrover.domain.Rover;
+
 public class RoverTurnLeftCommand implements RoverCommand{
     private Rover rover;
 

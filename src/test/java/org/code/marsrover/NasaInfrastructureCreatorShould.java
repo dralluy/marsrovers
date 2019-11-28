@@ -1,5 +1,6 @@
 package org.code.marsrover;
 
+import org.code.marsrover.domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

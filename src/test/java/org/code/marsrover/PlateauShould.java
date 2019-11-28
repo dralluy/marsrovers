@@ -1,5 +1,7 @@
 package org.code.marsrover;
 
+import org.code.marsrover.domain.Coordinate;
+import org.code.marsrover.domain.Plateau;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
