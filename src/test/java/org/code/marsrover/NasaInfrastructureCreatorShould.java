@@ -71,4 +71,16 @@ public class NasaInfrastructureCreatorShould {
         assertThat(roverCommands.size(), is(2));
         assertTrue(roverCommands.stream().filter(c -> c instanceof RoverTurnLeftCommand).findAny().isPresent());
     }
+
+    @Test
+    public void create_rover_turn_rifht_commands_when_nasa_command_contains_R_commands() {
+        String nasaCommand = "4 4 1 2 N RL";
+
+        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
+
+        assertNotNull(roverCommands);
+        assertThat(roverCommands.size(), is(2));
+        assertTrue(roverCommands.stream().filter(c -> c instanceof RoverTurnRightCommand).findAny().isPresent());
+    }
 }
