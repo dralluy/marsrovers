@@ -1,15 +1,21 @@
 package org.code.marsrover;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 public class NasaController {
-    private List<RoverCommand> rovers;
+    private NasaInfrastructureCreator infrastructureCreator;
 
-    public NasaController(List<RoverCommand> roverCommand) {
-        this.rovers = roverCommand;
+    public NasaController(NasaInfrastructureCreator infrastructureCreator) {
+        this.infrastructureCreator = infrastructureCreator;
     }
 
     public void executeCommands() {
-        this.rovers.forEach(RoverCommand::execute);
+        this.infrastructureCreator.getCommands().forEach(RoverCommand::execute);
+    }
+
+    public String getEndRoversPosition() {
+        return infrastructureCreator.getRovers().stream()
+                .map(rover -> rover.getPosition().toString())
+                .collect(Collectors.joining(" "));
     }
 }
