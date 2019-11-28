@@ -8,11 +8,21 @@ public enum Heading {
         public Position updateHeadingPositionToLeft(Position position) {
             return position.changeHeadingTo(WEST);
         }
+
+        @Override
+        public Position updateHeadingPositionToRight(Position position) {
+            return position.changeHeadingTo(EAST);
+        }
     },
     SOUTH("S") {
         @Override
         public Position updateHeadingPositionToLeft(Position position) {
             return position.changeHeadingTo(EAST);
+        }
+
+        @Override
+        public Position updateHeadingPositionToRight(Position position) {
+            return position.changeHeadingTo(WEST);
         }
     },
     EAST("E") {
@@ -20,11 +30,21 @@ public enum Heading {
         public Position updateHeadingPositionToLeft(Position position) {
             return position.changeHeadingTo(NORTH);
         }
+
+        @Override
+        public Position updateHeadingPositionToRight(Position position) {
+            return position.changeHeadingTo(SOUTH);
+        }
     },
     WEST("W") {
         @Override
         public Position updateHeadingPositionToLeft(Position position) {
             return position.changeHeadingTo(SOUTH);
+        }
+
+        @Override
+        public Position updateHeadingPositionToRight(Position position) {
+            return position.changeHeadingTo(NORTH);
         }
     };
 
@@ -39,6 +59,7 @@ public enum Heading {
     }
 
     public abstract Position updateHeadingPositionToLeft(Position position);
+    public abstract Position updateHeadingPositionToRight(Position position);
 
     public static Heading buildFrom(String cardinalDirection) {
         return Arrays.stream(values()).filter(heading -> heading.cardinalDirection.equals(cardinalDirection))
