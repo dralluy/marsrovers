@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class NasaCommandGenerator {
     private final String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
@@ -15,6 +16,7 @@ public class NasaCommandGenerator {
     private final String nasaCommand;
     private String plateauCommand = "";
     private List<String> roverCommands = new ArrayList<>();
+    private List<RoverCommand> commands = new ArrayList<>();
 
     public NasaCommandGenerator(String nasaCommand) {
         this.nasaCommand = nasaCommand;
@@ -61,11 +63,21 @@ public class NasaCommandGenerator {
         Matcher matcher = pattern.matcher(command);
         if (matcher.find()) {
             String roverPosition = matcher.group(1);
-            String roverCommands = command.substring(matcher.group(1).length());
             Position position = buildRoverPositionWith(roverPosition);
             rover = new Rover(position);
+            String roverCommands = command.substring(matcher.group(1).length());
+            buildCommandsFor(rover, roverCommands);
         }
         return rover;
+    }
+
+    private void buildCommandsFor(Rover rover, String roverCommands) {
+        Stream<String> commands = roverCommands.codePoints()
+                .mapToObj(c -> String.valueOf((char) c));
+        this.commands = commands.filter(c -> c.equals("M"))
+                .map(command -> new RoverMoveCommand(rover))
+                .collect(Collectors.toList());
+
     }
 
     private Position buildRoverPositionWith(String roverPosition) {
@@ -76,7 +88,7 @@ public class NasaCommandGenerator {
         return position;
     }
 
-    public List<RoverCommand> createCommands() {
-        return null;
+    public List<RoverCommand> getCommands() {
+        return this.commands;
     }
 }

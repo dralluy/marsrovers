@@ -53,10 +53,11 @@ public class NasaCommandGeneratorShould {
         String nasaCommand = "4 4 1 2 N MM";
 
         NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
-        List<RoverCommand> roverCommands = nasaCommandGenerator.createCommands();
+        nasaCommandGenerator.createRovers();
+        List<RoverCommand> roverCommands = nasaCommandGenerator.getCommands();
 
         assertNotNull(roverCommands);
-        assertThat(roverCommands.size(), is(1));
+        assertThat(roverCommands.size(), is(2));
         assertTrue(roverCommands.get(0) instanceof RoverMoveCommand);
     }
 }
