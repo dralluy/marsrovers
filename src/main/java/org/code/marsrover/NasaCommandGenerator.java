@@ -16,13 +16,19 @@ public class NasaCommandGenerator {
     private String plateauCommand = "";
     private List<String> roverCommands = new ArrayList<>();
     private List<RoverCommand> commands = new ArrayList<>();
+    private Plateau plateau;
+    private List<Rover> rovers;
 
     public NasaCommandGenerator(String nasaCommand) {
         this.nasaCommand = nasaCommand;
-        splitPlateauAndRoversCommands(nasaCommand);
+        buildInfraestructureFrom(nasaCommand);
     }
 
-    private void splitPlateauAndRoversCommands(String nasaCommand) {
+    public Plateau getPlateau() {
+        return this.plateau;
+    }
+
+    private void buildInfraestructureFrom(String nasaCommand) {
         Pattern pattern = Pattern.compile(NASA_PLATEAU_PATTERN);
         Matcher matcher = pattern.matcher(nasaCommand);
         if (matcher.find()) {
@@ -33,13 +39,15 @@ public class NasaCommandGenerator {
             while (matcher.find()) {
                 this.roverCommands.add(matcher.group(0));
             }
+            buildPlateauFrom(this.plateauCommand);
+            buildRoversAndCommandsFrom(this.roverCommands);
         }
     }
 
-    public Plateau getPlateau() {
-        Optional<Coordinate> coordinate = extractPlateauCoordinatesFromCommand();
-        return coordinate.isPresent()? new Plateau(coordinate.get()) : null;
-
+    private void buildPlateauFrom(String plateauCommand) {
+        Optional<Coordinate> plateauCoordinate = extractPlateauCoordinatesFromCommand();
+        if (plateauCoordinate.isPresent())
+            this.plateau = new Plateau(plateauCoordinate.get());
     }
 
     private Optional<Coordinate> extractPlateauCoordinatesFromCommand() {
@@ -50,8 +58,8 @@ public class NasaCommandGenerator {
         return Optional.empty();
     }
 
-    public List<Rover> createRovers() {
-        return this.roverCommands.stream()
+    private void buildRoversAndCommandsFrom(List<String> roverCommands) {
+        this.rovers = roverCommands.stream()
                 .map(command -> buildRoverFrom(command))
                 .collect(Collectors.toList());
     }
@@ -73,8 +81,8 @@ public class NasaCommandGenerator {
     private void buildCommandsFor(Rover rover, String roverCommands) {
         Stream<String> commands = roverCommands.codePoints()
                 .mapToObj(c -> String.valueOf((char) c));
-        this.commands = commands.filter(c -> c.equals("M"))
-                .map(command -> new RoverMoveCommand(rover))
+        this.commands = commands
+                .map(command -> RoverCommandFactory.createCommand(rover, command))
                 .collect(Collectors.toList());
 
     }
@@ -89,5 +97,9 @@ public class NasaCommandGenerator {
 
     public List<RoverCommand> getCommands() {
         return this.commands;
+    }
+
+    public List<Rover> getRovers() {
+        return rovers;
     }
 }
