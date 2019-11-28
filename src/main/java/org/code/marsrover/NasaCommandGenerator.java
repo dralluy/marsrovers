@@ -75,4 +75,8 @@ public class NasaCommandGenerator {
                 Heading.buildFrom(roverPostionSplit[2]));
         return position;
     }
+
+    public List<RoverCommand> createCommands() {
+        return null;
+    }
 }
