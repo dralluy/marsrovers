@@ -28,4 +28,24 @@ public class PlateauShould {
 
         assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
     }
+
+    @Test
+    public void validate_that_coordinate_is_inside_plateau_bounds() {
+        Coordinate upperRightCoordinates = new Coordinate(2, 2);
+        Coordinate outsidePlateauCoordinate = new Coordinate(2,2);
+
+        Plateau plateau = new Plateau(upperRightCoordinates);
+
+        assertTrue(plateau.isInsideBounds(outsidePlateauCoordinate));
+    }
+
+    @Test
+    public void validate_that_coordinate_is_outside_plateau_bounds() {
+        Coordinate upperRightCoordinates = new Coordinate(2, 2);
+        Coordinate outsidePlateauCoordinate = new Coordinate(2,3);
+
+        Plateau plateau = new Plateau(upperRightCoordinates);
+
+        assertFalse(plateau.isInsideBounds(outsidePlateauCoordinate));
+    }
 }
