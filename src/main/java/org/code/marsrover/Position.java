@@ -51,7 +51,7 @@ public class Position {
         return heading;
     }
 
-    public void changeHeadingTo(Heading heading) {
-        this.heading = heading;
+    public Position changeHeadingTo(Heading heading) {
+        return new Position(new Coordinate(this.coordinate.getX() , this.coordinate.getY()), heading);
     }
 }

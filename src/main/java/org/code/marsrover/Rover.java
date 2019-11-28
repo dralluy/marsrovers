@@ -26,15 +26,7 @@ public class Rover {
     }
 
     public void turnLeft() {
-        if (this.position.getHeading().equals(WEST)) {
-            this.position.changeHeadingTo(SOUTH);
-        } else if (this.position.getHeading().equals(NORTH)) {
-            this.position.changeHeadingTo(WEST);
-        } else if (this.position.getHeading().equals(EAST)) {
-            this.position.changeHeadingTo(NORTH);
-        } else if (this.position.getHeading().equals(SOUTH)) {
-            this.position.changeHeadingTo(EAST);
-        }
+        this.position = this.position.getHeading().updateHeadingPositionToLeft(this.position);
     }
 
     public void turnRight() {
