@@ -10,7 +10,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 @RunWith(JUnit4.class)
-public class NasaCommandGeneratorShould {
+public class NasaInfrastructureCreatorShould {
 
     @Test
     public void create_plateau_with_selected_size_when_nasa_command_contains_plateau_coordinates() {
@@ -18,8 +18,8 @@ public class NasaCommandGeneratorShould {
         Coordinate expectedUpperRightCoordinates = new Coordinate(4,4);
         Coordinate expectedBottomLeftCoordinates = new Coordinate(0,0);
 
-        NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
-        Plateau plateau = nasaCommandGenerator.getPlateau();
+        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        Plateau plateau = nasaInfrastructureCreator.getPlateau();
 
         assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
         assertThat(plateau.getBottomLeftCoordinates(), is(expectedBottomLeftCoordinates));
@@ -29,8 +29,8 @@ public class NasaCommandGeneratorShould {
     public void not_create_plateau_when_nasa_command_is_empty() {
         String nasaCommand = "";
 
-        NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
-        Plateau plateau = nasaCommandGenerator.getPlateau();
+        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        Plateau plateau = nasaInfrastructureCreator.getPlateau();
 
         assertNull(plateau);
     }
@@ -40,8 +40,8 @@ public class NasaCommandGeneratorShould {
         String nasaCommand = "4 4 1 2 N LM";
         Position expectedRoverPosition = new Position(new Coordinate(1, 2), Heading.NORTH);
 
-        NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
-        List<Rover> rovers = nasaCommandGenerator.getRovers();
+        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        List<Rover> rovers = nasaInfrastructureCreator.getRovers();
 
         assertNotNull(rovers);
         assertThat(rovers.size(), is(1));
@@ -52,8 +52,8 @@ public class NasaCommandGeneratorShould {
     public void create_rover_move_commands_when_nasa_command_contains_M_commands() {
         String nasaCommand = "4 4 1 2 N MM";
 
-        NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
-        List<RoverCommand> roverCommands = nasaCommandGenerator.getCommands();
+        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
         assertThat(roverCommands.size(), is(2));
@@ -64,8 +64,8 @@ public class NasaCommandGeneratorShould {
     public void create_rover_left_commands_when_nasa_command_contains_L_commands() {
         String nasaCommand = "4 4 1 2 N ML";
 
-        NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
-        List<RoverCommand> roverCommands = nasaCommandGenerator.getCommands();
+        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
         assertThat(roverCommands.size(), is(2));

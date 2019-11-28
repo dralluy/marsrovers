@@ -8,18 +8,17 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class NasaCommandGenerator {
-    private final String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
-    private final String NASA_ROVERS_PATTERN = "((\\d\\s\\d\\s[NSWE]\\s)([LRM])*)+";
-    private final String NASA_ROVER_PATTERN = "(\\d\\s\\d\\s[NSWE]\\s)([LRM])*";
+public class NasaInfrastructureCreator {
+    private final static String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
+    private final static String NASA_ROVERS_PATTERN = "((\\d\\s\\d\\s[NSWE]\\s)([LRM])*)+";
+    private final static String NASA_ROVER_PATTERN = "(\\d\\s\\d\\s[NSWE]\\s)([LRM])*";
     private final String nasaCommand;
     private String plateauCommand = "";
-    private List<String> roverCommands = new ArrayList<>();
     private List<RoverCommand> commands = new ArrayList<>();
     private Plateau plateau;
-    private List<Rover> rovers;
+    private List<Rover> rovers = new ArrayList<>();
 
-    public NasaCommandGenerator(String nasaCommand) {
+    public NasaInfrastructureCreator(String nasaCommand) {
         this.nasaCommand = nasaCommand;
         buildInfraestructureFrom(nasaCommand);
     }
@@ -36,11 +35,12 @@ public class NasaCommandGenerator {
             String roversCommand = this.nasaCommand.substring(matcher.group().length());
             pattern = Pattern.compile(NASA_ROVERS_PATTERN);
             matcher = pattern.matcher(roversCommand);
+            List<String> roverCommands = new ArrayList<>();
             while (matcher.find()) {
-                this.roverCommands.add(matcher.group(0));
+                roverCommands.add(matcher.group(0));
             }
             buildPlateauFrom(this.plateauCommand);
-            buildRoversAndCommandsFrom(this.roverCommands);
+            buildRoversAndCommandsFrom(roverCommands);
         }
     }
 
@@ -81,9 +81,9 @@ public class NasaCommandGenerator {
     private void buildCommandsFor(Rover rover, String roverCommands) {
         Stream<String> commands = roverCommands.codePoints()
                 .mapToObj(c -> String.valueOf((char) c));
-        this.commands = commands
+        this.commands.addAll(commands
                 .map(command -> RoverCommandFactory.createCommand(rover, command))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
 
     }
 
