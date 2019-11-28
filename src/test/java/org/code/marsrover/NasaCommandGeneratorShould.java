@@ -60,4 +60,17 @@ public class NasaCommandGeneratorShould {
         assertThat(roverCommands.size(), is(2));
         assertTrue(roverCommands.get(0) instanceof RoverMoveCommand);
     }
+
+    @Test
+    public void create_rover_left_commands_when_nasa_command_contains_L_commands() {
+        String nasaCommand = "4 4 1 2 N ML";
+
+        NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
+        nasaCommandGenerator.createRovers();
+        List<RoverCommand> roverCommands = nasaCommandGenerator.getCommands();
+
+        assertNotNull(roverCommands);
+        assertThat(roverCommands.size(), is(1));
+        assertTrue(roverCommands.get(0) instanceof RoverTurnLeftCommand);
+    }
 }
