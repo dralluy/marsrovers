@@ -1,6 +1,10 @@
 package org.code.marsrover;
 
 import org.code.marsrover.domain.*;
+import org.code.marsrover.domain.commands.RoverCommand;
+import org.code.marsrover.domain.commands.RoverMoveCommand;
+import org.code.marsrover.domain.commands.RoverTurnLeftCommand;
+import org.code.marsrover.domain.commands.RoverTurnRightCommand;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -11,7 +15,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 @RunWith(JUnit4.class)
-public class NasaInfrastructureCreatorShould {
+public class MarsBuilderTest {
 
     @Test
     public void create_plateau_with_selected_size_when_nasa_command_contains_plateau_coordinates() {
@@ -19,7 +23,7 @@ public class NasaInfrastructureCreatorShould {
         Coordinate expectedUpperRightCoordinates = new Coordinate(4,4);
         Coordinate expectedBottomLeftCoordinates = new Coordinate(0,0);
 
-        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
         Plateau plateau = nasaInfrastructureCreator.getPlateau();
 
         assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
@@ -30,7 +34,7 @@ public class NasaInfrastructureCreatorShould {
     public void not_create_plateau_when_nasa_command_is_empty() {
         String nasaCommand = "";
 
-        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
         Plateau plateau = nasaInfrastructureCreator.getPlateau();
 
         assertNull(plateau);
@@ -41,7 +45,7 @@ public class NasaInfrastructureCreatorShould {
         String nasaCommand = "4 4 1 2 N LM";
         Position expectedRoverPosition = new Position(new Coordinate(1, 2), Heading.NORTH);
 
-        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
         List<Rover> rovers = nasaInfrastructureCreator.getRovers();
 
         assertNotNull(rovers);
@@ -53,7 +57,7 @@ public class NasaInfrastructureCreatorShould {
     public void create_rover_move_commands_when_nasa_command_contains_M_commands() {
         String nasaCommand = "4 4 1 2 N MM";
 
-        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -65,7 +69,7 @@ public class NasaInfrastructureCreatorShould {
     public void create_rover_left_commands_when_nasa_command_contains_L_commands() {
         String nasaCommand = "4 4 1 2 N ML";
 
-        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -77,7 +81,7 @@ public class NasaInfrastructureCreatorShould {
     public void create_rover_turn_rifht_commands_when_nasa_command_contains_R_commands() {
         String nasaCommand = "4 4 1 2 N RL";
 
-        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -89,7 +93,7 @@ public class NasaInfrastructureCreatorShould {
     public void ignore_commands_when_nasa_command_contains_commands_different_from_RLM() {
         String nasaCommand = "4 4 1 2 N XLM";
 
-        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);

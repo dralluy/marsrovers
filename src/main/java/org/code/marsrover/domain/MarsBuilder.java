@@ -1,5 +1,8 @@
 package org.code.marsrover.domain;
 
+import org.code.marsrover.domain.commands.RoverCommand;
+import org.code.marsrover.domain.commands.RoverCommandFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +11,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class NasaInfrastructureFactory {
+public class MarsBuilder {
     private final static String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
     private final static String NASA_ROVERS_PATTERN = "((\\d\\s\\d\\s[NSWE]\\s)([LRM])*)+";
     private final static String NASA_ROVER_PATTERN = "(\\d\\s\\d\\s[NSWE]\\s)([LRM])*";
@@ -18,16 +21,16 @@ public class NasaInfrastructureFactory {
     private Plateau plateau;
     private List<Rover> rovers = new ArrayList<>();
 
-    public NasaInfrastructureFactory(String nasaCommand) {
+    public MarsBuilder(String nasaCommand) {
         this.nasaCommand = nasaCommand;
-        buildInfraestructureFrom(nasaCommand);
+        buildMarsComponents(nasaCommand);
     }
 
     public Plateau getPlateau() {
         return this.plateau;
     }
 
-    private void buildInfraestructureFrom(String nasaCommand) {
+    private void buildMarsComponents(String nasaCommand) {
         Pattern pattern = Pattern.compile(NASA_PLATEAU_PATTERN);
         Matcher matcher = pattern.matcher(nasaCommand);
         if (matcher.find()) {

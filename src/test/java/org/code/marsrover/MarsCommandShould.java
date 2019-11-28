@@ -1,7 +1,7 @@
 package org.code.marsrover;
 
 import org.code.marsrover.application.MarsCommand;
-import org.code.marsrover.domain.NasaInfrastructureFactory;
+import org.code.marsrover.domain.MarsBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -20,7 +20,7 @@ public class MarsCommandShould {
         String nasaCommand = NASA_COMMAND;
         String expectedEndRoversPosition = EXPECTED_ROVERS_POSITION;
 
-        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
 
         MarsCommand marsCommand = new MarsCommand(nasaInfrastructureCreator);
         marsCommand.executeCommands();
