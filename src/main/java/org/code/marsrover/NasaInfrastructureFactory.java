@@ -71,7 +71,7 @@ public class NasaInfrastructureFactory {
         if (matcher.find()) {
             String roverPosition = matcher.group(1);
             Position position = buildRoverPositionWith(roverPosition);
-            rover = new Rover(position);
+            rover = new Rover(position, plateau);
             String roverCommands = command.substring(matcher.group(1).length());
             buildCommandsFor(rover, roverCommands);
         }

@@ -3,7 +3,7 @@ package org.code.marsrover;
 public class Rover {
     private Position position;
 
-    public Rover(Position position) {
+    public Rover(Position position, Plateau plateau) {
         this.position = position;
     }
 

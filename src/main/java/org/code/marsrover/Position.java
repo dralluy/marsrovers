@@ -54,4 +54,8 @@ public class Position {
     public int hashCode() {
         return Objects.hash(coordinate, heading);
     }
+
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
 }
