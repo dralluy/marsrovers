@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -35,14 +37,14 @@ public class NasaCommandGeneratorShould {
 
     @Test
     public void create_rover_with_selected_position_and_heading_when_nasa_command_contains_rover_data() {
-        String nasaCommand = "4 4 1 2 N";
+        String nasaCommand = "4 4 1 2 N LM";
         Position expectedRoverPosition = new Position(new Coordinate(1, 2), Heading.NORTH);
-        Coordinate expectedBottomLeftCoordinates = new Coordinate(0,0);
 
         NasaCommandGenerator nasaCommandGenerator = new NasaCommandGenerator(nasaCommand);
-        Rover rover = nasaCommandGenerator.getRover();
+        List<Rover> rovers = nasaCommandGenerator.createRovers();
 
-        assertNotNull(rover);
-        assertThat(rover.getPosition(), is(expectedRoverPosition));
+        assertNotNull(rovers);
+        assertThat(rovers.size(), is(1));
+        assertThat(rovers.get(0).getPosition(), is(expectedRoverPosition));
     }
 }
