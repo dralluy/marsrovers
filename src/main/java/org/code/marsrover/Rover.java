@@ -2,9 +2,11 @@ package org.code.marsrover;
 
 public class Rover {
     private Position position;
+    private Plateau plateau;
 
     public Rover(Position position, Plateau plateau) {
         this.position = position;
+        this.plateau = plateau;
     }
 
     public Position getPosition() {
@@ -12,7 +14,10 @@ public class Rover {
     }
 
     public void move() {
-        this.position = new PositionMovement().applyMovementTo(this.position);
+        Position nextPosition = new PositionMovement().applyMovementTo(this.position);
+        if (plateau.isInsideBounds(nextPosition.getCoordinate())) {
+            this.position = nextPosition;
+        }
     }
 
     public void turnLeft() {

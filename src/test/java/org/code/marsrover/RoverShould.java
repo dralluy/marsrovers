@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class RoverShould {
 
-    private Plateau plateau = new Plateau(new Coordinate(3,3));
+    private Plateau plateau = new Plateau(new Coordinate(3,4));
 
     @Test
     public void have_a_position_represented_by_a_coordinate_and_a_heading() {
