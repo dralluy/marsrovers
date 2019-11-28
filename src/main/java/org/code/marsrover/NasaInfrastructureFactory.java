@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class NasaInfrastructureCreator {
+public class NasaInfrastructureFactory {
     private final static String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
     private final static String NASA_ROVERS_PATTERN = "((\\d\\s\\d\\s[NSWE]\\s)([LRM])*)+";
     private final static String NASA_ROVER_PATTERN = "(\\d\\s\\d\\s[NSWE]\\s)([LRM])*";
@@ -18,7 +18,7 @@ public class NasaInfrastructureCreator {
     private Plateau plateau;
     private List<Rover> rovers = new ArrayList<>();
 
-    public NasaInfrastructureCreator(String nasaCommand) {
+    public NasaInfrastructureFactory(String nasaCommand) {
         this.nasaCommand = nasaCommand;
         buildInfraestructureFrom(nasaCommand);
     }
@@ -89,10 +89,9 @@ public class NasaInfrastructureCreator {
 
     private Position buildRoverPositionWith(String roverPosition) {
         String[] roverPostionSplit = roverPosition.split("\\s");
-        Position position = new Position(
+        return new Position(
                 new Coordinate(Integer.valueOf(roverPostionSplit[0]), Integer.valueOf(roverPostionSplit[1])),
                 Heading.buildFrom(roverPostionSplit[2]));
-        return position;
     }
 
     public List<RoverCommand> getCommands() {

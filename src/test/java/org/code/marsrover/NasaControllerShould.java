@@ -4,8 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.util.stream.Collectors;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -20,7 +18,7 @@ public class NasaControllerShould {
         String nasaCommand = NASA_COMMAND;
         String expectedEndRoversPosition = EXPECTED_ROVERS_POSITION;
 
-        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
 
         NasaController nasaController = new NasaController(nasaInfrastructureCreator);
         nasaController.executeCommands();

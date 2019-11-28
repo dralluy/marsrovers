@@ -1,7 +1,5 @@
 package org.code.marsrover;
 
-import static org.code.marsrover.Heading.*;
-
 public class Rover {
     private Position position;
 
@@ -14,14 +12,19 @@ public class Rover {
     }
 
     public void move() {
-        if (NORTH.equals(this.position.getHeading())) {
-            this.position = position.incrementYPosition();
-        } else if (SOUTH.equals(this.position.getHeading())) {
-            this.position = position.decrementYPosition();
-        } else if (EAST.equals(this.position.getHeading())) {
-            this.position = position.incrementXPosition();
-        } else if (WEST.equals(this.position.getHeading())) {
-            this.position = position.decrementXPosition();
+        switch (this.position.getHeading()) {
+            case NORTH:
+                this.position = position.incrementYPosition();
+                break;
+            case SOUTH:
+                this.position = position.decrementYPosition();
+                break;
+            case EAST:
+                this.position = position.incrementXPosition();
+                break;
+            case WEST:
+                this.position = position.decrementXPosition();
+                break;
         }
     }
 

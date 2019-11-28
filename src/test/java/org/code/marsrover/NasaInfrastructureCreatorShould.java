@@ -18,7 +18,7 @@ public class NasaInfrastructureCreatorShould {
         Coordinate expectedUpperRightCoordinates = new Coordinate(4,4);
         Coordinate expectedBottomLeftCoordinates = new Coordinate(0,0);
 
-        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
         Plateau plateau = nasaInfrastructureCreator.getPlateau();
 
         assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
@@ -29,7 +29,7 @@ public class NasaInfrastructureCreatorShould {
     public void not_create_plateau_when_nasa_command_is_empty() {
         String nasaCommand = "";
 
-        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
         Plateau plateau = nasaInfrastructureCreator.getPlateau();
 
         assertNull(plateau);
@@ -40,7 +40,7 @@ public class NasaInfrastructureCreatorShould {
         String nasaCommand = "4 4 1 2 N LM";
         Position expectedRoverPosition = new Position(new Coordinate(1, 2), Heading.NORTH);
 
-        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
         List<Rover> rovers = nasaInfrastructureCreator.getRovers();
 
         assertNotNull(rovers);
@@ -52,7 +52,7 @@ public class NasaInfrastructureCreatorShould {
     public void create_rover_move_commands_when_nasa_command_contains_M_commands() {
         String nasaCommand = "4 4 1 2 N MM";
 
-        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -64,7 +64,7 @@ public class NasaInfrastructureCreatorShould {
     public void create_rover_left_commands_when_nasa_command_contains_L_commands() {
         String nasaCommand = "4 4 1 2 N ML";
 
-        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -76,7 +76,7 @@ public class NasaInfrastructureCreatorShould {
     public void create_rover_turn_rifht_commands_when_nasa_command_contains_R_commands() {
         String nasaCommand = "4 4 1 2 N RL";
 
-        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -88,7 +88,7 @@ public class NasaInfrastructureCreatorShould {
     public void ignore_commands_when_nasa_command_contains_commands_different_from_RLM() {
         String nasaCommand = "4 4 1 2 N XLM";
 
-        NasaInfrastructureCreator nasaInfrastructureCreator = new NasaInfrastructureCreator(nasaCommand);
+        NasaInfrastructureFactory nasaInfrastructureCreator = new NasaInfrastructureFactory(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
