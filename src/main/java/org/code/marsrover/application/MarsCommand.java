@@ -1,11 +1,14 @@
-package org.code.marsrover;
+package org.code.marsrover.application;
+
+import org.code.marsrover.domain.NasaInfrastructureFactory;
+import org.code.marsrover.domain.RoverCommand;
 
 import java.util.stream.Collectors;
 
-public class NasaController {
+public class MarsCommand {
     private NasaInfrastructureFactory infrastructureCreator;
 
-    public NasaController(NasaInfrastructureFactory infrastructureCreator) {
+    public MarsCommand(NasaInfrastructureFactory infrastructureCreator) {
         this.infrastructureCreator = infrastructureCreator;
     }
 

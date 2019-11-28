@@ -1,6 +1,4 @@
-package org.code.marsrover;
-
-import org.code.marsrover.domain.*;
+package org.code.marsrover.domain;
 
 import java.util.ArrayList;
 import java.util.List;

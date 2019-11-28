@@ -1,6 +1,4 @@
-package org.code.marsrover;
-
-import org.code.marsrover.domain.Rover;
+package org.code.marsrover.domain;
 
 public class RoverMoveCommand implements RoverCommand{
     private Rover rover;
