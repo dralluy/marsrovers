@@ -12,20 +12,7 @@ public class Rover {
     }
 
     public void move() {
-        switch (this.position.getHeading()) {
-            case NORTH:
-                this.position = position.incrementYPosition();
-                break;
-            case SOUTH:
-                this.position = position.decrementYPosition();
-                break;
-            case EAST:
-                this.position = position.incrementXPosition();
-                break;
-            case WEST:
-                this.position = position.decrementXPosition();
-                break;
-        }
+        this.position = this.position.getHeading().moveFromPosition(this.position);
     }
 
     public void turnLeft() {
