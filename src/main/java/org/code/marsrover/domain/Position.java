@@ -36,6 +36,10 @@ public class Position {
         return new Position(new Coordinate(this.coordinate.getX() , this.coordinate.getY()), heading);
     }
 
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
     @Override
     public String toString() {
         return coordinate.toString() + " " + heading.getCardinalDirection();
@@ -53,9 +57,5 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(coordinate, heading);
-    }
-
-    public Coordinate getCoordinate() {
-        return coordinate;
     }
 }

@@ -5,8 +5,11 @@ import org.code.marsrover.domain.commands.RoverCommand;
 
 import java.util.stream.Collectors;
 
+/**
+ * Command that encapsulates the use case for executing the rover commands and getting the end rover coordinates positions.
+ */
 public class NasaCommand {
-    public static final String ERROR_RESPONSE = "ERROR";
+    private static final String ERROR_RESPONSE = "ERROR";
     private MarsUniverseBuilder marsUniverseBuilder;
 
     public NasaCommand(MarsUniverseBuilder marsUniverseBuilder) {

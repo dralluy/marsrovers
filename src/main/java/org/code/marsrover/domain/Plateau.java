@@ -17,7 +17,7 @@ public class Plateau {
         return upperRightCoordinate;
     }
 
-    public boolean isInsideBounds(Coordinate outsidePlateauCoordinate) {
+    public boolean hasInsideBounds(Coordinate outsidePlateauCoordinate) {
         return outsidePlateauCoordinate.getX() >= bottomLeftCoordinate.getX() && outsidePlateauCoordinate.getX() <= upperRightCoordinate.getY()
                 && outsidePlateauCoordinate.getY() >= bottomLeftCoordinate.getY() && outsidePlateauCoordinate.getY() <= upperRightCoordinate.getY();
     }

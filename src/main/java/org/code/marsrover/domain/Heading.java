@@ -2,6 +2,10 @@ package org.code.marsrover.domain;
 
 import java.util.Arrays;
 
+/**
+ * Different possible heading directions for Rovers. Each heading can change
+ * current position heading if a rover is turning left or right.
+ */
 public enum Heading {
     NORTH("N") {
         @Override

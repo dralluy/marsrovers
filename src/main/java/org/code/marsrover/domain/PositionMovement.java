@@ -11,12 +11,11 @@ public class PositionMovement {
     private static final Map<Heading, Function<Position, Position>> positionMovements;
 
     static {
-        final Map<Heading, Function<Position, Position>> movements = new HashMap<>();
-        movements.put(NORTH, Position::incrementYPosition);
-        movements.put(SOUTH, Position::decrementYPosition);
-        movements.put(EAST, Position::incrementXPosition);
-        movements.put(WEST, Position::decrementXPosition);
-        positionMovements = Collections.unmodifiableMap(movements);
+        positionMovements = Map.of(
+                NORTH, Position::incrementYPosition,
+                SOUTH, Position::decrementYPosition,
+                EAST, Position::incrementXPosition,
+                WEST, Position::decrementXPosition);
     }
 
     public Position applyMovementTo(Position position) {

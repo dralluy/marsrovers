@@ -34,6 +34,14 @@ public class MarsUniverseBuilder {
         return this.plateau;
     }
 
+    public List<RoverCommand> getCommands() {
+        return this.commands;
+    }
+
+    public List<Rover> getRovers() {
+        return rovers;
+    }
+
     private void buildMarsComponents(String nasaCommand) {
         var pattern = Pattern.compile(NASA_PLATEAU_PATTERN);
         var matcher = pattern.matcher(nasaCommand);
@@ -98,13 +106,5 @@ public class MarsUniverseBuilder {
         return new Position(
                 new Coordinate(Integer.valueOf(roverPostionSplit[0]), Integer.valueOf(roverPostionSplit[1])),
                                 Heading.buildFrom(roverPostionSplit[2]));
-    }
-
-    public List<RoverCommand> getCommands() {
-        return this.commands;
-    }
-
-    public List<Rover> getRovers() {
-        return rovers;
     }
 }

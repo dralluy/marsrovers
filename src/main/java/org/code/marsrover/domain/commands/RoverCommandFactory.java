@@ -3,11 +3,16 @@ package org.code.marsrover.domain.commands;
 import org.code.marsrover.domain.Rover;
 
 public class RoverCommandFactory {
+
+    private static final String MOVE = "M";
+    private static final String TURN_LEFT = "L";
+    private static final String TURN_RIGHT = "R";
+
     public static RoverCommand createCommand(Rover rover, String command) {
         switch (command) {
-            case "M" : return new RoverMoveCommand(rover);
-            case "L" : return new RoverTurnLeftCommand(rover);
-            case "R" : return new RoverTurnRightCommand(rover);
+            case MOVE: return new RoverMoveCommand(rover);
+            case TURN_LEFT: return new RoverTurnLeftCommand(rover);
+            case TURN_RIGHT: return new RoverTurnRightCommand(rover);
             default: return null;
         }
     }

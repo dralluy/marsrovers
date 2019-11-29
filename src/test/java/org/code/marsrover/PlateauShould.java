@@ -38,7 +38,7 @@ public class PlateauShould {
 
         Plateau plateau = new Plateau(upperRightCoordinates);
 
-        assertTrue(plateau.isInsideBounds(outsidePlateauCoordinate));
+        assertTrue(plateau.hasInsideBounds(outsidePlateauCoordinate));
     }
 
     @Test
@@ -48,6 +48,6 @@ public class PlateauShould {
 
         Plateau plateau = new Plateau(upperRightCoordinates);
 
-        assertFalse(plateau.isInsideBounds(outsidePlateauCoordinate));
+        assertFalse(plateau.hasInsideBounds(outsidePlateauCoordinate));
     }
 }

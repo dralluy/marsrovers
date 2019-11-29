@@ -15,7 +15,7 @@ public class Rover {
 
     public void move() {
         Position nextPosition = new PositionMovement().applyMovementTo(this.position);
-        if (plateau.isInsideBounds(nextPosition.getCoordinate())) {
+        if (plateau.hasInsideBounds(nextPosition.getCoordinate())) {
             this.position = nextPosition;
         }
     }
