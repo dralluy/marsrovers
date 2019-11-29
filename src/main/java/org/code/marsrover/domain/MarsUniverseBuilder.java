@@ -11,6 +11,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Container for all the infrastruture needed in Mars.
+ * Creates the Plateau, Rovers and RoverCommands from NASA command
+ */
 public class MarsUniverseBuilder {
     private final static String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
     private final static String NASA_ROVERS_PATTERN = "((\\d\\s\\d\\s[NSWE]\\s)([LRM])*)+";
@@ -31,11 +35,11 @@ public class MarsUniverseBuilder {
     }
 
     private void buildMarsComponents(String nasaCommand) {
-        Pattern pattern = Pattern.compile(NASA_PLATEAU_PATTERN);
-        Matcher matcher = pattern.matcher(nasaCommand);
+        var pattern = Pattern.compile(NASA_PLATEAU_PATTERN);
+        var matcher = pattern.matcher(nasaCommand);
         if (matcher.find()) {
             this.plateauCommand = matcher.group();
-            String roversCommand = this.nasaCommand.substring(matcher.group().length());
+            var roversCommand = this.nasaCommand.substring(matcher.group().length());
             pattern = Pattern.compile(NASA_ROVERS_PATTERN);
             matcher = pattern.matcher(roversCommand);
             List<String> roverCommands = new ArrayList<>();
@@ -54,7 +58,7 @@ public class MarsUniverseBuilder {
 
     private Optional<Coordinate> extractPlateauCoordinatesFromCommand() {
         if (!this.plateauCommand.isEmpty()) {
-            String[] coordinateSnippet = this.plateauCommand.split("\\s");
+            var coordinateSnippet = this.plateauCommand.split("\\s");
             return Optional.of(new Coordinate(Integer.valueOf(coordinateSnippet[0]), Integer.valueOf(coordinateSnippet[1])));
         }
         return Optional.empty();
@@ -68,13 +72,13 @@ public class MarsUniverseBuilder {
 
     private Rover buildRoverFrom(String command) {
         Rover rover = null;
-        Pattern pattern = Pattern.compile(NASA_ROVER_PATTERN);
-        Matcher matcher = pattern.matcher(command);
+        var pattern = Pattern.compile(NASA_ROVER_PATTERN);
+        var matcher = pattern.matcher(command);
         if (matcher.find()) {
-            String roverPosition = matcher.group(1);
-            Position position = buildRoverPositionWith(roverPosition);
+            var roverPosition = matcher.group(1);
+            var position = buildRoverPositionWith(roverPosition);
+            var roverCommands = command.substring(matcher.group(1).length());
             rover = new Rover(position, plateau);
-            String roverCommands = command.substring(matcher.group(1).length());
             buildCommandsFor(rover, roverCommands);
         }
         return rover;
@@ -90,10 +94,10 @@ public class MarsUniverseBuilder {
     }
 
     private Position buildRoverPositionWith(String roverPosition) {
-        String[] roverPostionSplit = roverPosition.split("\\s");
+        var roverPostionSplit = roverPosition.split("\\s");
         return new Position(
                 new Coordinate(Integer.valueOf(roverPostionSplit[0]), Integer.valueOf(roverPostionSplit[1])),
-                Heading.buildFrom(roverPostionSplit[2]));
+                                Heading.buildFrom(roverPostionSplit[2]));
     }
 
     public List<RoverCommand> getCommands() {
