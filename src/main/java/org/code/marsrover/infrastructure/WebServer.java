@@ -3,6 +3,8 @@ package org.code.marsrover.infrastructure;
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+import org.code.marsrover.application.ProcecssNasaCommand;
+import org.code.marsrover.domain.MarsBuilder;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -25,7 +27,12 @@ public class WebServer {
 
     private static String processRequest(URI requestURI) {
         String query = requestURI.getQuery();
-        return "OK";
+        String[] querySplit = query.split("=");
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(querySplit[1]);
+
+        ProcecssNasaCommand procecssNasaCommand = new ProcecssNasaCommand(nasaInfrastructureCreator);
+
+        return procecssNasaCommand.execute();
     }
 
     private static void processResponse(String response, HttpExchange httpExchange) throws IOException {
