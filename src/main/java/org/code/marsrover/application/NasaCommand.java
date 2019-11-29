@@ -5,7 +5,7 @@ import org.code.marsrover.domain.commands.RoverCommand;
 
 import java.util.stream.Collectors;
 
-public class NasaCommand implements Command<String> {
+public class NasaCommand {
     public static final String ERROR_RESPONSE = "ERROR";
     private MarsUniverseBuilder marsUniverseBuilder;
 
@@ -13,7 +13,6 @@ public class NasaCommand implements Command<String> {
         this.marsUniverseBuilder = marsUniverseBuilder;
     }
 
-    @Override
     public String execute() {
         this.marsUniverseBuilder.getCommands().forEach(RoverCommand::execute);
         String endRoversPosition = getEndRoversPosition();
