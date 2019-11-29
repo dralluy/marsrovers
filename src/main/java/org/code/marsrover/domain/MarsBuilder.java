@@ -42,15 +42,14 @@ public class MarsBuilder {
             while (matcher.find()) {
                 roverCommands.add(matcher.group(0));
             }
-            buildPlateauFrom(this.plateauCommand);
+            buildPlateau();
             buildRoversAndCommandsFrom(roverCommands);
         }
     }
 
-    private void buildPlateauFrom(String plateauCommand) {
+    private void buildPlateau() {
         Optional<Coordinate> plateauCoordinate = extractPlateauCoordinatesFromCommand();
-        if (plateauCoordinate.isPresent())
-            this.plateau = new Plateau(plateauCoordinate.get());
+        plateauCoordinate.ifPresent(coordinate -> this.plateau = new Plateau(coordinate));
     }
 
     private Optional<Coordinate> extractPlateauCoordinatesFromCommand() {
@@ -63,7 +62,7 @@ public class MarsBuilder {
 
     private void buildRoversAndCommandsFrom(List<String> roverCommands) {
         this.rovers = roverCommands.stream()
-                .map(command -> buildRoverFrom(command))
+                .map(this::buildRoverFrom)
                 .collect(Collectors.toList());
     }
 
