@@ -3,8 +3,6 @@ package org.code.marsrover.infrastructure;
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
-import org.code.marsrover.application.NasaCommand;
-import org.code.marsrover.domain.MarsBuilder;
 
 import java.io.IOException;
 import java.io.OutputStream;

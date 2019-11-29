@@ -15,7 +15,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 @RunWith(JUnit4.class)
-public class MarsBuilderTest {
+public class MarsUniverseBuilderTest {
 
     @Test
     public void create_plateau_with_selected_size_when_nasa_command_contains_plateau_coordinates() {
@@ -23,7 +23,7 @@ public class MarsBuilderTest {
         Coordinate expectedUpperRightCoordinates = new Coordinate(4,4);
         Coordinate expectedBottomLeftCoordinates = new Coordinate(0,0);
 
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
+        MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(nasaCommand);
         Plateau plateau = nasaInfrastructureCreator.getPlateau();
 
         assertThat(plateau.getUpperRightCoordinates(), is(expectedUpperRightCoordinates));
@@ -34,7 +34,7 @@ public class MarsBuilderTest {
     public void not_create_plateau_when_nasa_command_is_empty() {
         String nasaCommand = "";
 
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
+        MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(nasaCommand);
         Plateau plateau = nasaInfrastructureCreator.getPlateau();
 
         assertNull(plateau);
@@ -45,7 +45,7 @@ public class MarsBuilderTest {
         String nasaCommand = "4 4 1 2 N LM";
         Position expectedRoverPosition = new Position(new Coordinate(1, 2), Heading.NORTH);
 
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
+        MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(nasaCommand);
         List<Rover> rovers = nasaInfrastructureCreator.getRovers();
 
         assertNotNull(rovers);
@@ -57,7 +57,7 @@ public class MarsBuilderTest {
     public void create_rover_move_commands_when_nasa_command_contains_M_commands() {
         String nasaCommand = "4 4 1 2 N MM";
 
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
+        MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -69,7 +69,7 @@ public class MarsBuilderTest {
     public void create_rover_left_commands_when_nasa_command_contains_L_commands() {
         String nasaCommand = "4 4 1 2 N ML";
 
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
+        MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -81,7 +81,7 @@ public class MarsBuilderTest {
     public void create_rover_turn_rifht_commands_when_nasa_command_contains_R_commands() {
         String nasaCommand = "4 4 1 2 N RL";
 
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
+        MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);
@@ -93,7 +93,7 @@ public class MarsBuilderTest {
     public void ignore_commands_when_nasa_command_contains_commands_different_from_RLM() {
         String nasaCommand = "4 4 1 2 N XLM";
 
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
+        MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(nasaCommand);
         List<RoverCommand> roverCommands = nasaInfrastructureCreator.getCommands();
 
         assertNotNull(roverCommands);

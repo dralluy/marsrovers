@@ -1,7 +1,5 @@
 package org.code.marsrover.infrastructure;
 
-import org.code.marsrover.application.NasaCommand;
-import org.code.marsrover.domain.MarsBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

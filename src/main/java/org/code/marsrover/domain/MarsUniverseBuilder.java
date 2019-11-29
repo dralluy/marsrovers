@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MarsBuilder {
+public class MarsUniverseBuilder {
     private final static String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
     private final static String NASA_ROVERS_PATTERN = "((\\d\\s\\d\\s[NSWE]\\s)([LRM])*)+";
     private final static String NASA_ROVER_PATTERN = "(\\d\\s\\d\\s[NSWE]\\s)([LRM])*";
@@ -21,7 +21,7 @@ public class MarsBuilder {
     private Plateau plateau;
     private List<Rover> rovers = new ArrayList<>();
 
-    public MarsBuilder(String nasaCommand) {
+    public MarsUniverseBuilder(String nasaCommand) {
         this.nasaCommand = nasaCommand;
         buildMarsComponents(nasaCommand);
     }
