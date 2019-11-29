@@ -35,11 +35,7 @@ public class WebServer {
     private static String processRequest(URI requestURI) {
         String query = requestURI.getQuery();
         String[] querySplit = query.split("=");
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(querySplit[1]);
-
-        NasaCommand nasaCommand = new NasaCommand(nasaInfrastructureCreator);
-
-        return nasaCommand.execute();
+        return new NasaController(querySplit[1]).execute();
     }
 
     private static void processResponse(String response, HttpExchange httpExchange) throws IOException {
