@@ -12,10 +12,15 @@ import java.net.InetSocketAddress;
 import java.net.URI;
 
 public class WebServer {
+    private static final int PORT = 8000;
+    private static final String CONTEXT = "/mars";
+    private static final int OK = 200;
+
     private HttpServer server;
+
     public WebServer() throws IOException {
-        server = HttpServer.create(new InetSocketAddress(8000), 0);
-        HttpContext context = server.createContext("/mars");
+        server = HttpServer.create(new InetSocketAddress(PORT), 0);
+        HttpContext context = server.createContext(CONTEXT);
         context.setHandler(WebServer::handleRequest);
         server.start();
     }
@@ -37,7 +42,7 @@ public class WebServer {
     }
 
     private static void processResponse(String response, HttpExchange httpExchange) throws IOException {
-        httpExchange.sendResponseHeaders(200, response.getBytes().length);
+        httpExchange.sendResponseHeaders(OK, response.getBytes().length);
         try(OutputStream os = httpExchange.getResponseBody()) {
             os.write(response.getBytes());
         }
