@@ -6,6 +6,7 @@ import org.code.marsrover.domain.commands.RoverCommand;
 import java.util.stream.Collectors;
 
 public class ProcecssNasaCommand {
+    public static final String ERROR_RESPONSE = "ERROR";
     private MarsBuilder infrastructureCreator;
 
     public ProcecssNasaCommand(MarsBuilder infrastructureCreator) {
@@ -14,7 +15,12 @@ public class ProcecssNasaCommand {
 
     public String execute() {
         this.infrastructureCreator.getCommands().forEach(RoverCommand::execute);
-        return getEndRoversPosition();
+        String endRoversPosition = getEndRoversPosition();
+        return isValidPosition(endRoversPosition) ? endRoversPosition : ERROR_RESPONSE;
+    }
+
+    private boolean isValidPosition(String endRoversPosition) {
+        return endRoversPosition != null && !endRoversPosition.isEmpty();
     }
 
     private String getEndRoversPosition() {
