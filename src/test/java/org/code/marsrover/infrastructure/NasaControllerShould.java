@@ -16,8 +16,7 @@ public class NasaControllerShould {
 
     @Test
     public void expose_and_execute_nasa_commad_when_remotely_sent() {
-        NasaCommand nasaCommand = new NasaCommand(new MarsBuilder(COMMAND));
-        NasaController<String> nasaController = new NasaController<>(nasaCommand);
+        NasaController nasaController = new NasaController(COMMAND);
 
         String response= nasaController.execute();
 

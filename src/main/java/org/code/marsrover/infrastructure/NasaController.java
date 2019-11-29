@@ -2,15 +2,17 @@ package org.code.marsrover.infrastructure;
 
 import org.code.marsrover.application.Command;
 import org.code.marsrover.application.NasaCommand;
+import org.code.marsrover.domain.MarsBuilder;
 
-public class NasaController<T> {
-    private Command<T> command;
+public class NasaController {
+    private NasaCommand nasaCommand;
 
-    public NasaController(Command<T> command) {
-        this.command = command;
+    public NasaController(String command) {
+        MarsBuilder marsBuilder = new MarsBuilder(command);
+        nasaCommand = new NasaCommand(marsBuilder);
     }
 
-    public T execute() {
-        return command.execute();
+    public String execute() {
+        return nasaCommand.execute();
     }
 }
