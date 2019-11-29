@@ -1,17 +1,16 @@
 package org.code.marsrover;
 
-import org.code.marsrover.application.MarsCommand;
+import org.code.marsrover.application.ProcecssNasaCommand;
 import org.code.marsrover.domain.MarsBuilder;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JUnit4.class)
-public class MarsCommandShould {
-
+public class ProcessNasaCommandShould {
     private static final String NASA_COMMAND = "5 5 1 2 N LMLMLMLMM 3 3 E MMRMMRMRRM";
     private static final String EXPECTED_ROVERS_POSITION = "1 3 N 5 1 E";
 
@@ -22,9 +21,8 @@ public class MarsCommandShould {
 
         MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
 
-        MarsCommand marsCommand = new MarsCommand(nasaInfrastructureCreator);
-        marsCommand.executeCommands();
+        ProcecssNasaCommand procecssNasaCommand = new ProcecssNasaCommand(nasaInfrastructureCreator);
 
-        assertThat(marsCommand.getEndRoversPosition(), is(expectedEndRoversPosition));
+        assertThat(procecssNasaCommand.execute(), CoreMatchers.is(expectedEndRoversPosition));
     }
 }
