@@ -12,8 +12,9 @@ import java.net.InetSocketAddress;
 import java.net.URI;
 
 public class WebServer {
+    private HttpServer server;
     public WebServer() throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+        server = HttpServer.create(new InetSocketAddress(8000), 0);
         HttpContext context = server.createContext("/mars");
         context.setHandler(WebServer::handleRequest);
         server.start();
@@ -40,5 +41,9 @@ public class WebServer {
         try(OutputStream os = httpExchange.getResponseBody()) {
             os.write(response.getBytes());
         }
+    }
+
+    public void stop() {
+        server.stop(0);
     }
 }
