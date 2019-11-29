@@ -14,6 +14,7 @@ public class WebServer {
     private static final String CONTEXT = "/mars";
     private static final int OK = 200;
     private static final int UNPROCESSABLE_ENTITY = 422;
+    private static final String ERROR = "ERROR";
 
     private HttpServer server;
 
@@ -37,8 +38,9 @@ public class WebServer {
     }
 
     private static void processResponse(String response, HttpExchange httpExchange) throws IOException {
-        httpExchange.sendResponseHeaders(OK, response.getBytes().length);
-        if (!responseIsValid(response)) {
+        if (responseIsValid(response)) {
+            httpExchange.sendResponseHeaders(OK, response.getBytes().length);
+        } else {
             httpExchange.sendResponseHeaders(UNPROCESSABLE_ENTITY, response.getBytes().length);
         }
 
@@ -48,7 +50,7 @@ public class WebServer {
     }
 
     private static boolean responseIsValid(String response) {
-        return response != null && !response.isEmpty();
+        return response != null && !response.isEmpty() && !ERROR.equalsIgnoreCase(response);
     }
 
     public void stop() {
