@@ -16,13 +16,11 @@ public class ProcessNasaCommandShould {
 
     @Test
     public void get_rovers_end_position_when_executing_a_nasa_command() {
-        String nasaCommand = NASA_COMMAND;
-        String expectedEndRoversPosition = EXPECTED_ROVERS_POSITION;
 
-        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(nasaCommand);
+        MarsBuilder nasaInfrastructureCreator = new MarsBuilder(NASA_COMMAND);
 
         ProcecssNasaCommand procecssNasaCommand = new ProcecssNasaCommand(nasaInfrastructureCreator);
 
-        assertThat(procecssNasaCommand.execute(), CoreMatchers.is(expectedEndRoversPosition));
+        assertThat(procecssNasaCommand.execute(), CoreMatchers.is(EXPECTED_ROVERS_POSITION));
     }
 }
