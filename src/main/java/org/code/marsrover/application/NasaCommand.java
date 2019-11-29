@@ -5,16 +5,17 @@ import org.code.marsrover.domain.commands.RoverCommand;
 
 import java.util.stream.Collectors;
 
-public class ProcecssNasaCommand {
+public class NasaCommand implements Command<String> {
     public static final String ERROR_RESPONSE = "ERROR";
-    private MarsBuilder infrastructureCreator;
+    private MarsBuilder marsBuilder;
 
-    public ProcecssNasaCommand(MarsBuilder infrastructureCreator) {
-        this.infrastructureCreator = infrastructureCreator;
+    public NasaCommand(MarsBuilder marsBuilder) {
+        this.marsBuilder = marsBuilder;
     }
 
+    @Override
     public String execute() {
-        this.infrastructureCreator.getCommands().forEach(RoverCommand::execute);
+        this.marsBuilder.getCommands().forEach(RoverCommand::execute);
         String endRoversPosition = getEndRoversPosition();
         return isValidPosition(endRoversPosition) ? endRoversPosition : ERROR_RESPONSE;
     }
@@ -24,7 +25,7 @@ public class ProcecssNasaCommand {
     }
 
     private String getEndRoversPosition() {
-        return infrastructureCreator.getRovers().stream()
+        return marsBuilder.getRovers().stream()
                 .map(rover -> rover.getPosition().toString())
                 .collect(Collectors.joining(" "));
     }

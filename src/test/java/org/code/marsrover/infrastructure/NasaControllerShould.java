@@ -1,5 +1,7 @@
 package org.code.marsrover.infrastructure;
 
+import org.code.marsrover.application.NasaCommand;
+import org.code.marsrover.domain.MarsBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +16,8 @@ public class NasaControllerShould {
 
     @Test
     public void expose_and_execute_nasa_commad_when_remotely_sent() {
-        NasaController nasaController = new NasaController();
+        NasaCommand nasaCommand = new NasaCommand(new MarsBuilder(COMMAND));
+        NasaController<String> nasaController = new NasaController<>(nasaCommand);
 
         String response= nasaController.execute();
 

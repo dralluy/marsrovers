@@ -1,6 +1,6 @@
 package org.code.marsrover;
 
-import org.code.marsrover.application.ProcecssNasaCommand;
+import org.code.marsrover.application.NasaCommand;
 import org.code.marsrover.domain.MarsBuilder;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
@@ -19,8 +19,8 @@ public class ProcessNasaCommandShould {
 
         MarsBuilder nasaInfrastructureCreator = new MarsBuilder(NASA_COMMAND);
 
-        ProcecssNasaCommand procecssNasaCommand = new ProcecssNasaCommand(nasaInfrastructureCreator);
+        NasaCommand nasaCommand = new NasaCommand(nasaInfrastructureCreator);
 
-        assertThat(procecssNasaCommand.execute(), CoreMatchers.is(EXPECTED_ROVERS_POSITION));
+        assertThat(nasaCommand.execute(), CoreMatchers.is(EXPECTED_ROVERS_POSITION));
     }
 }
