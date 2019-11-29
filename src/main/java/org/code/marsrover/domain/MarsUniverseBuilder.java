@@ -92,9 +92,9 @@ public class MarsUniverseBuilder {
     }
 
     private void buildCommandsFor(Rover rover, String roverCommands) {
-        Stream<String> commands = roverCommands.codePoints()
+        var commandsStream = roverCommands.codePoints()
                 .mapToObj(c -> String.valueOf((char) c));
-        this.commands.addAll(commands
+        this.commands.addAll(commandsStream
                 .map(command -> RoverCommandFactory.createCommand(rover, command))
                 .collect(Collectors.toList()));
 
