@@ -5,18 +5,19 @@ import org.code.marsrover.domain.commands.RoverCommand;
 
 import java.util.stream.Collectors;
 
-public class MarsCommand {
+public class ProcecssNasaCommand {
     private MarsBuilder infrastructureCreator;
 
-    public MarsCommand(MarsBuilder infrastructureCreator) {
+    public ProcecssNasaCommand(MarsBuilder infrastructureCreator) {
         this.infrastructureCreator = infrastructureCreator;
     }
 
-    public void executeCommands() {
+    public String execute() {
         this.infrastructureCreator.getCommands().forEach(RoverCommand::execute);
+        return getEndRoversPosition();
     }
 
-    public String getEndRoversPosition() {
+    private String getEndRoversPosition() {
         return infrastructureCreator.getRovers().stream()
                 .map(rover -> rover.getPosition().toString())
                 .collect(Collectors.joining(" "));
