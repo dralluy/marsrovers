@@ -13,7 +13,7 @@ public class NasaControllerShould {
     private static final String COMMAND = "5 5 1 2 N LMLMLMLMM 3 3 E MMRMMRMRRM";
 
     @Test
-    public void expose_and_execute_nasa_commad_when_remotely_sent() {
+    public void expose_and_execute_nasa_command_when_remotely_sent() {
         NasaController nasaController = new NasaController(COMMAND);
 
         String response= nasaController.execute();

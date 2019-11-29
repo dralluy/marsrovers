@@ -6,13 +6,12 @@ import org.code.marsrover.domain.commands.RoverCommandFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Container for all the infrastruture needed in Mars.
+ * Container for all the infrastructure needed in Mars.
  * Creates the Plateau, Rovers and RoverCommands from NASA command
  */
 public class MarsUniverseBuilder {
@@ -102,9 +101,9 @@ public class MarsUniverseBuilder {
     }
 
     private Position buildRoverPositionWith(String roverPosition) {
-        var roverPostionSplit = roverPosition.split("\\s");
+        var roverPositionSplit = roverPosition.split("\\s");
         return new Position(
-                new Coordinate(Integer.valueOf(roverPostionSplit[0]), Integer.valueOf(roverPostionSplit[1])),
-                                Heading.buildFrom(roverPostionSplit[2]));
+                new Coordinate(Integer.valueOf(roverPositionSplit[0]), Integer.valueOf(roverPositionSplit[1])),
+                                Heading.buildFrom(roverPositionSplit[2]));
     }
 }

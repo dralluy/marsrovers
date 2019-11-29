@@ -74,11 +74,11 @@ public class MarsUniverseBuilderTest {
 
         assertNotNull(roverCommands);
         assertThat(roverCommands.size(), is(2));
-        assertTrue(roverCommands.stream().filter(c -> c instanceof RoverTurnLeftCommand).findAny().isPresent());
+        assertTrue(roverCommands.stream().anyMatch(c -> c instanceof RoverTurnLeftCommand));
     }
 
     @Test
-    public void create_rover_turn_rifht_commands_when_nasa_command_contains_R_commands() {
+    public void create_rover_turn_right_commands_when_nasa_command_contains_R_commands() {
         String nasaCommand = "4 4 1 2 N RL";
 
         MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(nasaCommand);
@@ -86,7 +86,7 @@ public class MarsUniverseBuilderTest {
 
         assertNotNull(roverCommands);
         assertThat(roverCommands.size(), is(2));
-        assertTrue(roverCommands.stream().filter(c -> c instanceof RoverTurnRightCommand).findAny().isPresent());
+        assertTrue(roverCommands.stream().anyMatch(c -> c instanceof RoverTurnRightCommand));
     }
 
     @Test
