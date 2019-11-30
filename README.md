@@ -18,7 +18,7 @@ exercise for remote access.
 1. Run server app: java -classpath ./build/classes/java/main org.code.marsrover.infrastructure.WebServerApp
 2. Browser:  http://localhost:8000/mars?command=COMMAND
 3. CURL: curl http://localhost:8000/mars?command="COMMAND"
-4. Remote client: 
+4. Remote client: java -classpath ./build/classes/java/main org.code.marsrover.infrastructure.RemoteClientApp "COMMAND"
 
 Examples:
 curl http://localhost:8000/mars?command="4 4 1 1 N M"
