@@ -6,7 +6,6 @@ import org.code.marsrover.domain.commands.RoverCommandFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -93,7 +92,7 @@ public class MarsUniverseBuilder {
 
     private void buildCommandsFor(Rover rover, String roverCommands) {
         var commandsStream = roverCommands.codePoints()
-                .mapToObj(c -> String.valueOf((char) c));
+                .mapToObj(singleCommand -> String.valueOf((char) singleCommand));
         this.commands.addAll(commandsStream
                 .map(command -> RoverCommandFactory.createCommand(rover, command))
                 .collect(Collectors.toList()));
