@@ -6,6 +6,7 @@ import org.code.marsrover.domain.commands.RoverCommandFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -41,16 +42,8 @@ public class MarsUniverseBuilder {
         var pattern = Pattern.compile(NASA_PLATEAU_PATTERN);
         var matcher = pattern.matcher(nasaCommand);
         if (matcher.find()) {
-            var plateauCommand = matcher.group();
-            var roversCommand = nasaCommand.substring(matcher.group().length());
-            pattern = Pattern.compile(NASA_ROVERS_PATTERN);
-            matcher = pattern.matcher(roversCommand);
-            List<String> roverCommands = new ArrayList<>();
-            while (matcher.find()) {
-                roverCommands.add(matcher.group(0));
-            }
-            buildPlateau(plateauCommand);
-            buildRoversAndCommandsFrom(roverCommands);
+            buildPlateau(matcher.group());
+            buildRoversAndCommandsFrom(extractRoverComnadsFrom(nasaCommand, matcher));
         }
     }
 
@@ -59,18 +52,30 @@ public class MarsUniverseBuilder {
         plateauCoordinate.ifPresent(coordinate -> this.plateau = new Plateau(coordinate));
     }
 
+    private void buildRoversAndCommandsFrom(List<String> roverCommands) {
+        this.rovers = roverCommands.stream()
+                .map(this::buildRoverFrom)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> extractRoverComnadsFrom(String nasaCommand, Matcher matcher) {
+        Pattern pattern;
+        var roversCommand = nasaCommand.substring(matcher.group().length());
+        pattern = Pattern.compile(NASA_ROVERS_PATTERN);
+        matcher = pattern.matcher(roversCommand);
+        List<String> roverCommands = new ArrayList<>();
+        while (matcher.find()) {
+            roverCommands.add(matcher.group(0));
+        }
+        return roverCommands;
+    }
+
     private Optional<Coordinate> extractPlateauCoordinatesFromCommand(String plateauCommand) {
         if (!plateauCommand.isEmpty()) {
             var coordinateSnippet = plateauCommand.split("\\s");
             return Optional.of(new Coordinate(Integer.valueOf(coordinateSnippet[0]), Integer.valueOf(coordinateSnippet[1])));
         }
         return Optional.empty();
-    }
-
-    private void buildRoversAndCommandsFrom(List<String> roverCommands) {
-        this.rovers = roverCommands.stream()
-                .map(this::buildRoverFrom)
-                .collect(Collectors.toList());
     }
 
     private Rover buildRoverFrom(String command) {
