@@ -43,7 +43,7 @@ public class MarsUniverseBuilder {
         var matcher = pattern.matcher(nasaCommand);
         if (matcher.find()) {
             buildPlateau(matcher.group());
-            buildRoversAndCommandsFrom(extractRoverComnadsFrom(nasaCommand, matcher));
+            buildRoversAndCommandsFrom(extractRoverComnadsFrom(nasaCommand, matcher.group().length()));
         }
     }
 
@@ -58,11 +58,10 @@ public class MarsUniverseBuilder {
                 .collect(Collectors.toList());
     }
 
-    private List<String> extractRoverComnadsFrom(String nasaCommand, Matcher matcher) {
-        Pattern pattern;
-        var roversCommand = nasaCommand.substring(matcher.group().length());
-        pattern = Pattern.compile(NASA_ROVERS_PATTERN);
-        matcher = pattern.matcher(roversCommand);
+    private List<String> extractRoverComnadsFrom(String nasaCommand, int roverCommandsPosition) {
+        var roversCommand = nasaCommand.substring(roverCommandsPosition);
+        var pattern = Pattern.compile(NASA_ROVERS_PATTERN);
+        var matcher = pattern.matcher(roversCommand);
         List<String> roverCommands = new ArrayList<>();
         while (matcher.find()) {
             roverCommands.add(matcher.group(0));
