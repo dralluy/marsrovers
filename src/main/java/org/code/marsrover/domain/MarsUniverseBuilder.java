@@ -17,14 +17,11 @@ public class MarsUniverseBuilder {
     private final static String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
     private final static String NASA_ROVERS_PATTERN = "((\\d\\s\\d\\s[NSWE]\\s)([LRM])*)+";
     private final static String NASA_ROVER_PATTERN = "(\\d\\s\\d\\s[NSWE]\\s)([LRM])*";
-    private final String nasaCommand;
-    private String plateauCommand = "";
     private List<RoverCommand> commands = new ArrayList<>();
     private Plateau plateau;
     private List<Rover> rovers = new ArrayList<>();
 
     public MarsUniverseBuilder(String nasaCommand) {
-        this.nasaCommand = nasaCommand;
         buildMarsComponents(nasaCommand);
     }
 
@@ -44,27 +41,27 @@ public class MarsUniverseBuilder {
         var pattern = Pattern.compile(NASA_PLATEAU_PATTERN);
         var matcher = pattern.matcher(nasaCommand);
         if (matcher.find()) {
-            this.plateauCommand = matcher.group();
-            var roversCommand = this.nasaCommand.substring(matcher.group().length());
+            var plateauCommand = matcher.group();
+            var roversCommand = nasaCommand.substring(matcher.group().length());
             pattern = Pattern.compile(NASA_ROVERS_PATTERN);
             matcher = pattern.matcher(roversCommand);
             List<String> roverCommands = new ArrayList<>();
             while (matcher.find()) {
                 roverCommands.add(matcher.group(0));
             }
-            buildPlateau();
+            buildPlateau(plateauCommand);
             buildRoversAndCommandsFrom(roverCommands);
         }
     }
 
-    private void buildPlateau() {
-        Optional<Coordinate> plateauCoordinate = extractPlateauCoordinatesFromCommand();
+    private void buildPlateau(String plateauCommand) {
+        Optional<Coordinate> plateauCoordinate = extractPlateauCoordinatesFromCommand(plateauCommand);
         plateauCoordinate.ifPresent(coordinate -> this.plateau = new Plateau(coordinate));
     }
 
-    private Optional<Coordinate> extractPlateauCoordinatesFromCommand() {
-        if (!this.plateauCommand.isEmpty()) {
-            var coordinateSnippet = this.plateauCommand.split("\\s");
+    private Optional<Coordinate> extractPlateauCoordinatesFromCommand(String plateauCommand) {
+        if (!plateauCommand.isEmpty()) {
+            var coordinateSnippet = plateauCommand.split("\\s");
             return Optional.of(new Coordinate(Integer.valueOf(coordinateSnippet[0]), Integer.valueOf(coordinateSnippet[1])));
         }
         return Optional.empty();
