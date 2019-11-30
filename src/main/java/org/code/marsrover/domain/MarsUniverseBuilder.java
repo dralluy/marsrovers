@@ -85,7 +85,7 @@ public class MarsUniverseBuilder {
             var roverPosition = matcher.group(1);
             var position = buildRoverPositionWith(roverPosition);
             var roverCommands = command.substring(matcher.group(1).length());
-            rover = new Rover(position, plateau);
+            rover = new Rover(position, this.plateau);
             buildCommandsFor(rover, roverCommands);
         }
         return rover;

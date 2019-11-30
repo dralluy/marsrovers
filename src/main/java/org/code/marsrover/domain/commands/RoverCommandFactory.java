@@ -15,7 +15,7 @@ public final class RoverCommandFactory {
             case MOVE: return new RoverMoveCommand(rover);
             case TURN_LEFT: return new RoverTurnLeftCommand(rover);
             case TURN_RIGHT: return new RoverTurnRightCommand(rover);
-            default: return null;
+            default: return new EmptyCommand();
         }
     }
 }
