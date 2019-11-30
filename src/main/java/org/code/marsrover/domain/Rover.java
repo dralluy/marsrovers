@@ -2,7 +2,7 @@ package org.code.marsrover.domain;
 
 public class Rover {
     private Position position;
-    private Plateau plateau;
+    private final Plateau plateau;
 
     public Rover(Position position, Plateau plateau) {
         this.position = position;

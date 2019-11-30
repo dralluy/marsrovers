@@ -3,6 +3,7 @@ package org.code.marsrover;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.code.marsrover.domain.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -13,7 +14,12 @@ import static org.junit.Assert.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class RoverShould {
 
-    private Plateau plateau = new Plateau(new Coordinate(3,4));
+    private Plateau plateau;
+
+    @Before
+    public void setUp() {
+        plateau = new Plateau(new Coordinate(3,4));
+    }
 
     @Test
     public void have_a_position_represented_by_a_coordinate_and_a_heading() {

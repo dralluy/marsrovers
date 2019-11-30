@@ -3,7 +3,7 @@ package org.code.marsrover.domain.commands;
 import org.code.marsrover.domain.Rover;
 
 public class RoverTurnLeftCommand implements RoverCommand{
-    private Rover rover;
+    private final Rover rover;
 
     public RoverTurnLeftCommand(Rover rover) {
         this.rover = rover;

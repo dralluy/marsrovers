@@ -7,7 +7,7 @@ import org.code.marsrover.domain.MarsUniverseBuilder;
  * Expose NASA command execution for web server
  */
 public class NasaController {
-    private NasaCommand nasaCommand;
+    private final NasaCommand nasaCommand;
 
     public NasaController(String command) {
         MarsUniverseBuilder marsUniverseBuilder = new MarsUniverseBuilder(command);

@@ -3,8 +3,8 @@ package org.code.marsrover.domain;
 import java.util.Objects;
 
 public class Position {
-    private Coordinate coordinate;
-    private Heading heading;
+    private final Coordinate coordinate;
+    private final Heading heading;
 
     public Position(Coordinate coordinate, Heading heading) {
 

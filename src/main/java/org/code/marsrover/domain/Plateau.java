@@ -2,8 +2,8 @@ package org.code.marsrover.domain;
 
 public class Plateau {
 
-    private Coordinate bottomLeftCoordinate = new Coordinate(0, 0);
-    private Coordinate upperRightCoordinate;
+    private final Coordinate bottomLeftCoordinate = new Coordinate(0, 0);
+    private final Coordinate upperRightCoordinate;
 
     public Plateau(Coordinate upperRightCoordinates) {
         this.upperRightCoordinate = upperRightCoordinates;

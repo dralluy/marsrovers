@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class NasaRemoteClient {
 
     private static final String ERROR = "ERROR";
-    private static Logger logger = Logger.getLogger("org.code.marsrover.infrastructure");
+    private static final Logger logger = Logger.getLogger("org.code.marsrover.infrastructure");
 
     private static final String URL_HOST = "http://localhost:8000";
     private static final String CONTEXT = "/mars";

@@ -56,7 +56,7 @@ public enum Heading {
 
     };
 
-    private String cardinalDirection;
+    private final String cardinalDirection;
 
     Heading(String cardinalDirection) {
         this.cardinalDirection = cardinalDirection;

@@ -17,7 +17,7 @@ public class MarsUniverseBuilder {
     private final static String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
     private final static String NASA_ROVERS_PATTERN = "((\\d\\s\\d\\s[NSWE]\\s)([LRM])*)+";
     private final static String NASA_ROVER_PATTERN = "(\\d\\s\\d\\s[NSWE]\\s)([LRM])*";
-    private List<RoverCommand> commands = new ArrayList<>();
+    private final List<RoverCommand> commands = new ArrayList<>();
     private Plateau plateau;
     private List<Rover> rovers = new ArrayList<>();
 
