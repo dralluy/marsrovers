@@ -10,7 +10,7 @@ import org.junit.runners.JUnit4;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JUnit4.class)
-public class ProcessNasaCommandShould {
+public class NasaCommandShould {
     private static final String NASA_COMMAND = "5 5 1 2 N LMLMLMLMM 3 3 E MMRMMRMRRM";
     private static final String EXPECTED_ROVERS_POSITION = "1 3 N 5 1 E";
 
