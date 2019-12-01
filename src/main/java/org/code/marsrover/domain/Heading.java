@@ -1,10 +1,11 @@
 package org.code.marsrover.domain;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 /**
  * Different possible heading directions for Rovers. Each heading can change
- * current position heading if a rover is turning left or right.
+ * current position heading when rover is turning left or right.
  */
 public enum Heading {
     NORTH("N") {
@@ -70,7 +71,9 @@ public enum Heading {
     public abstract Position updateHeadingPositionToRight(Position position);
 
     public static Heading buildFrom(String cardinalDirection) {
-        return Arrays.stream(values()).filter(heading -> heading.cardinalDirection.equals(cardinalDirection))
-                .findFirst().get();
+        return Arrays.stream(values())
+                .filter(heading -> heading.cardinalDirection.equals(cardinalDirection))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
     }
 }

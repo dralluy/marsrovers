@@ -8,9 +8,10 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static org.code.marsrover.application.NasaCommand.ERROR_RESPONSE;
+
 public class NasaRemoteClient {
 
-    private static final String ERROR = "ERROR";
     private static final Logger logger = Logger.getLogger("org.code.marsrover.infrastructure");
 
     private static final String URL_HOST = "http://localhost:8000";
@@ -34,7 +35,7 @@ public class NasaRemoteClient {
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Server error");
         }
-        return ERROR;
+        return ERROR_RESPONSE;
     }
 
     private void closeConnection(HttpURLConnection connection) {

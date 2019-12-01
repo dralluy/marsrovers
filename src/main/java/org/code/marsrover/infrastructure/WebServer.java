@@ -9,12 +9,13 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
 
+import static org.code.marsrover.application.NasaCommand.ERROR_RESPONSE;
+
 public class WebServer {
     private static final int PORT = 8000;
     private static final String CONTEXT = "/mars";
     private static final int OK = 200;
     private static final int UNPROCESSABLE_ENTITY = 422;
-    private static final String ERROR = "ERROR";
 
     private HttpServer server;
 
@@ -41,7 +42,7 @@ public class WebServer {
         if (responseIsValid(response)) {
             httpExchange.sendResponseHeaders(OK, response.getBytes().length);
         } else {
-            httpExchange.sendResponseHeaders(UNPROCESSABLE_ENTITY, response.getBytes().length);
+            httpExchange.sendResponseHeaders(UNPROCESSABLE_ENTITY, ERROR_RESPONSE.getBytes().length);
         }
 
         try(OutputStream os = httpExchange.getResponseBody()) {
@@ -50,7 +51,7 @@ public class WebServer {
     }
 
     private static boolean responseIsValid(String response) {
-        return response != null && !response.isEmpty() && !ERROR.equalsIgnoreCase(response);
+        return !response.isEmpty() && !ERROR_RESPONSE.equalsIgnoreCase(response);
     }
 
     public void stop() {

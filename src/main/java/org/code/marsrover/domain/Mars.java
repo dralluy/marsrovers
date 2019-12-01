@@ -11,12 +11,13 @@ import java.util.stream.Collectors;
 
 /**
  * Container for all the infrastructure needed in Mars.
- * Creates the Plateau, Rovers and RoverCommands from NASA command
+ * Creates the Plateau, Rovers and RoverCommands from NASA command using an internal Builder.
  */
 public class Mars {
     private final static String NASA_PLATEAU_PATTERN = "^(\\d\\s\\d\\s)";
     private final static String NASA_ROVER_PATTERN = "(\\d\\s\\d\\s[NSWE]\\s)([LRM])*";
     private final static String NASA_ROVERS_PATTERN = "(" + NASA_ROVER_PATTERN + ")+";
+
     private final List<RoverCommand> commands;
     private final Plateau plateau;
     private final List<Rover> rovers;

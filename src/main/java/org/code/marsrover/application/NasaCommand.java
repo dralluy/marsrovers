@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * Command that encapsulates the use case for executing the rover commands and getting the end rover coordinates positions.
  */
 public class NasaCommand {
-    private static final String ERROR_RESPONSE = "ERROR";
+    public static final String ERROR_RESPONSE = "ERROR";
     private final Mars mars;
 
     public NasaCommand(Mars mars) {
