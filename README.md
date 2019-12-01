@@ -1,6 +1,12 @@
 # Mars Rovers 
 The project includes the main MarsRovers code challenge plus the optional
 exercise for remote access.
+The main design goal was doing a clear separation of concerns. For that, the final 
+application layers follow a clean architecture convention. 
+The domain layer has all the entities with the business rules.
+The application layer represent the use cases (in that particular case, executing a NASA command)
+The infrastructure layer is about exposing the uses case to be remotely accesible.
+It is developed following a classicist TDD approach.
 
 ## Prerequisites
 
