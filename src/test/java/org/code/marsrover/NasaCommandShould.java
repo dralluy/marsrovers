@@ -1,7 +1,7 @@
 package org.code.marsrover;
 
 import org.code.marsrover.application.NasaCommand;
-import org.code.marsrover.domain.MarsUniverseBuilder;
+import org.code.marsrover.domain.Mars;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ public class NasaCommandShould {
     @Test
     public void get_rovers_end_position_when_executing_a_nasa_command() {
 
-        MarsUniverseBuilder nasaInfrastructureCreator = new MarsUniverseBuilder(NASA_COMMAND);
+        Mars nasaInfrastructureCreator = new Mars.Builder(NASA_COMMAND).build();
 
         NasaCommand nasaCommand = new NasaCommand(nasaInfrastructureCreator);
 
